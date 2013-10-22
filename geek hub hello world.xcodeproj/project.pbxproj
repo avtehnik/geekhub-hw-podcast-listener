@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE167621180F3BCC00CA48E2 /* GHHViewPodcastController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE16761F180F3BCC00CA48E2 /* GHHViewPodcastController.m */; };
 		FE2F318118076767008910DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318018076767008910DD /* Foundation.framework */; };
 		FE2F318318076767008910DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318218076767008910DD /* CoreGraphics.framework */; };
 		FE2F318518076767008910DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318418076767008910DD /* UIKit.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE16761E180F3BCC00CA48E2 /* GHHViewPodcastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHViewPodcastController.h; sourceTree = "<group>"; };
+		FE16761F180F3BCC00CA48E2 /* GHHViewPodcastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHViewPodcastController.m; sourceTree = "<group>"; };
 		FE2F317D18076767008910DD /* geek hub hello world.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "geek hub hello world.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE2F318018076767008910DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FE2F318218076767008910DD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -114,12 +117,11 @@
 		FE2F318618076767008910DD /* geek hub hello world */ = {
 			isa = PBXGroup;
 			children = (
+				FEB6C0A2181320B00006DC65 /* ViewControllers */,
 				FE2F318F18076767008910DD /* GHHAppDelegate.h */,
 				FE2F319018076767008910DD /* GHHAppDelegate.m */,
 				FE2F319218076767008910DD /* Main_iPhone.storyboard */,
 				FE2F319518076767008910DD /* Main_iPad.storyboard */,
-				FE2F319818076767008910DD /* GHHViewController.h */,
-				FE2F319918076767008910DD /* GHHViewController.m */,
 				FE2F319B18076767008910DD /* Images.xcassets */,
 				FE2F318718076767008910DD /* Supporting Files */,
 			);
@@ -153,6 +155,17 @@
 				FE2F31AB18076767008910DD /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEB6C0A2181320B00006DC65 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE16761E180F3BCC00CA48E2 /* GHHViewPodcastController.h */,
+				FE16761F180F3BCC00CA48E2 /* GHHViewPodcastController.m */,
+				FE2F319818076767008910DD /* GHHViewController.h */,
+				FE2F319918076767008910DD /* GHHViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE2F319A18076767008910DD /* GHHViewController.m in Sources */,
+				FE167621180F3BCC00CA48E2 /* GHHViewPodcastController.m in Sources */,
 				FE2F319118076767008910DD /* GHHAppDelegate.m in Sources */,
 				FE2F318D18076767008910DD /* main.m in Sources */,
 			);
@@ -396,6 +410,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geek hub hello world/geek hub hello world-Prefix.pch";
 				INFOPLIST_FILE = "geek hub hello world/geek hub hello world-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -409,6 +424,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geek hub hello world/geek hub hello world-Prefix.pch";
 				INFOPLIST_FILE = "geek hub hello world/geek hub hello world-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -475,6 +491,7 @@
 				FE2F31B418076767008910DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FE2F31B518076767008910DD /* Build configuration list for PBXNativeTarget "geek hub hello worldTests" */ = {
 			isa = XCConfigurationList;
@@ -483,6 +500,7 @@
 				FE2F31B718076767008910DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

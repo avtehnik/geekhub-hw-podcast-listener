@@ -12,6 +12,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    UIColor * color = [UIColor colorWithRed:255/255.0f green:147/255.0f blue:154/255.0f alpha:1.0f];
+    [_window setBackgroundColor:color];
     // Override point for customization after application launch.
     return YES;
 }

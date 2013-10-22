@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GHHViewController : UIViewController
+@interface GHHViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UINavigationBarDelegate>
+@property(strong,nonatomic) NSArray *podcasts;
+
 
 @end
