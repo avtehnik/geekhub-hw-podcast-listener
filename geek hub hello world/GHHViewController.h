@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GHHViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,UINavigationBarDelegate>
-@property(strong,nonatomic) NSArray *podcasts;
+
+@class Reachability;
+
+@interface GHHViewController : UIViewController< UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate,
+
+UINavigationBarDelegate>{
+    Reachability* internetReachable;
+    Reachability* hostReachable;
+}
 
 
 @end

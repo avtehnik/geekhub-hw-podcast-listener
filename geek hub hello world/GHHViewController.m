@@ -7,10 +7,22 @@
 //
 
 #import "GHHViewController.h"
+#import "GDataXMLNode.h"
+#import "GHHPodcastEpisodeCell.h"
 #import "GHHViewPodcastController.h"
+#import "Reachability.h"
+#import "UIImageView+WebCache.h"
+#import <SystemConfiguration/SystemConfiguration.h>
 
 @interface GHHViewController ()
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property ( strong, nonatomic) IBOutlet UITableView *tableView;
+@property BOOL internetActive;
+@property BOOL hostActive;
+@property ( strong, nonatomic) GDataXMLDocument * doc;
+@property ( strong, nonatomic) NSArray *podcasts;
+@property (nonatomic) Reachability *hostReachability;
+@property (nonatomic) Reachability *internetReachability;
+@property (nonatomic) Reachability *wifiReachability;
 
 @end
 
@@ -19,15 +31,29 @@
 //@synthesize podcasts;
 
 
+
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.hostActive = YES;
+}
+
+
 - (void)viewDidLoad
 {
-    self.podcasts = [[NSArray alloc] initWithObjects:@"UWP",@"Radio T",@"SitePoint",@"Laowai cast", nil];
-
-    NSLog(@"GHHViewController");
     self.title = @"PodCasts";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
+    
+	self.hostReachability = [Reachability reachabilityWithHostName:@"www.apple.com"];
+	[self.hostReachability startNotifier];
+	[self updateInterfaceWithReachability:self.hostReachability];
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -39,21 +65,34 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"podcast";
+    static NSString *CellIdentifier = @"cell";
     //here you check for PreCreated cell.
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    
+    GHHPodcastEpisodeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSLog(@"cell is nill");
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[GHHPodcastEpisodeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    GDataXMLElement *item = _podcasts[indexPath.row];
+    NSArray *titles = [item elementsForName:@"title"];
+    if (titles.count > 0) {
+        GDataXMLElement * title = titles[0];
+        cell.title.text = title.stringValue;
+    }
+    NSArray *descriptions = [item elementsForName:@"itunes:subtitle"];
+    if (descriptions.count > 0) {
+        GDataXMLElement * description = descriptions[0];
+        cell.subtitle.text = description.stringValue;
+    }
     
+    NSArray *url = [item elementsForName:@"itunes:image"];
+    if (url.count > 0) {
+        GDataXMLElement * link = url[0];
+        [cell.image setImageWithURL:[NSURL URLWithString:[[link attributeForName:@"href"] stringValue]]
+                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+        
+    }
     
-    
-    cell.textLabel.text = [self.podcasts objectAtIndex:indexPath.row];
     
     return cell;
 }
@@ -62,8 +101,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    NSLog( @"view name %i ", self.podcasts.count);
-    return self.podcasts.count;
+   // NSLog( @"view name %i ", self.podcasts.count);
+    return _podcasts.count;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -84,50 +123,111 @@
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     UIViewController *DVC = [segue destinationViewController];
     
+    GDataXMLElement *item = _podcasts[path.row];
+    NSArray *titles = [item elementsForName:@"title"];
+    if (titles.count > 0) {
+        GDataXMLElement * title = titles[0];
+        DVC.title = title.stringValue;
+    }
     
-    NSString *viewName = NSStringFromClass([DVC class]);
-    NSLog( @"view name %@ ", viewName);
+}
+
+
+// This method is called once we complete editing
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+    [self parcePodcastForUrl:textField.text];
+    [self.tableView reloadData];
     
-    
-    if([viewName isEqualToString:@"GHHManageFeedsViewController"]){
+}
+
+-(void)parcePodcastForUrl:(NSString *)url{
+
+    if(self.hostActive){
         
+        NSURL * requestURL = [NSURL URLWithString:url];
+        NSURLRequest * request = [NSURLRequest requestWithURL:requestURL];
+        
+        NSURLResponse * response = nil;
+        NSError * error = nil;
+        NSData * responseData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        
+        self.doc = [[GDataXMLDocument alloc] initWithData:responseData
+                                                  options:0 error:&error];
+        if (error) {
+            NSLog(@"%@", error);
+        }
+        NSArray * nodes = [self.doc nodesForXPath:@"//channel/item" error:&error];
+        _podcasts = nodes;
     }else{
-        DVC.title = [self.podcasts objectAtIndex:path.row];
+        UIAlertView* alert = [[UIAlertView alloc] init];
+        [alert setMessage:@"Без интернета немогу"];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setCancelButtonIndex:0];
+        [alert show];
+
     }
+    
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
+// This method enables or disables the processing of return key
+-(BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
     return YES;
-    
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+
+/*!
+ * Called by Reachability whenever status changes.
+ */
+- (void) reachabilityChanged:(NSNotification *)note
 {
-
-    NSLog(@"delete");
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
-    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:self.podcasts];
-    [mutableArray removeObject:[self.podcasts objectAtIndex:indexPath.row]];
-    self.podcasts = [NSArray arrayWithArray:mutableArray];
-    
-    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableView endUpdates];
-
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass:[Reachability class]]);
+	[self updateInterfaceWithReachability:curReach];
 }
 
 
-- (IBAction)editTableAction:(id)sender {
+
+- (void)updateInterfaceWithReachability:(Reachability *)reachability
+{
     
-    if (self.tableView.editing)
-    {
-        //[self.tableView setEditing:NO animated:YES];
-    }else{
-        // [self.tableView setEditing:YES animated:YES];
+    NetworkStatus netStatus = [reachability currentReachabilityStatus];
+    
+    BOOL status = NO;
+    if(reachability == self.hostReachability){
+        if(netStatus == ReachableViaWWAN || netStatus==ReachableViaWiFi){
+            status = YES;
+            NSLog(@"yes");
+        }else{
+            NSLog(@"no");
+            status = NO;
+        }
+
     }
     
+    if(status != self.hostActive){
+        self.hostActive = status;
+        UIAlertView* alert = [[UIAlertView alloc] init];
+        if(self.hostActive){
+            [alert setMessage:@"Интернет появился"];
+        }else{
+            [alert setMessage:@"Интернет пропал"];
+        }
+        [alert addButtonWithTitle:@"OK"];
+        [alert setCancelButtonIndex:0];
+        [alert show];
+    }
     
+}
+
+
+
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end
