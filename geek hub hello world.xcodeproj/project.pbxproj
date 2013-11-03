@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FE080824182424550056264D /* GHHPodcastModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE080823182424550056264D /* GHHPodcastModel.m */; };
 		FE167621180F3BCC00CA48E2 /* GHHViewPodcastController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE16761F180F3BCC00CA48E2 /* GHHViewPodcastController.m */; };
 		FE2F318118076767008910DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318018076767008910DD /* Foundation.framework */; };
 		FE2F318318076767008910DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318218076767008910DD /* CoreGraphics.framework */; };
@@ -54,6 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FE080822182424540056264D /* GHHPodcastModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHPodcastModel.h; sourceTree = "<group>"; };
+		FE080823182424550056264D /* GHHPodcastModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHPodcastModel.m; sourceTree = "<group>"; };
 		FE16761E180F3BCC00CA48E2 /* GHHViewPodcastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHViewPodcastController.h; sourceTree = "<group>"; };
 		FE16761F180F3BCC00CA48E2 /* GHHViewPodcastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHViewPodcastController.m; sourceTree = "<group>"; };
 		FE2F317D18076767008910DD /* geek hub hello world.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "geek hub hello world.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +142,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FE080821182423990056264D /* modls */ = {
+			isa = PBXGroup;
+			children = (
+				FE080822182424540056264D /* GHHPodcastModel.h */,
+				FE080823182424550056264D /* GHHPodcastModel.m */,
+			);
+			name = modls;
+			sourceTree = "<group>";
+		};
 		FE2F317418076767008910DD = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +186,7 @@
 		FE2F318618076767008910DD /* geek hub hello world */ = {
 			isa = PBXGroup;
 			children = (
+				FE080821182423990056264D /* modls */,
 				FE7C6428181B40A300C8DF11 /* GDataXMLNode.h */,
 				FE7C6429181B40A300C8DF11 /* GDataXMLNode.m */,
 				FE7C6425181B22C900C8DF11 /* Reachability.h */,
@@ -387,6 +400,7 @@
 				FE7C6427181B22C900C8DF11 /* Reachability.m in Sources */,
 				FE5BE3E1181B67CC001FF07E /* SDWebImageManager.m in Sources */,
 				FE7C642A181B40A300C8DF11 /* GDataXMLNode.m in Sources */,
+				FE080824182424550056264D /* GHHPodcastModel.m in Sources */,
 				FE5BE3DC181B67CC001FF07E /* SDImageCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -537,7 +551,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geek hub hello world/geek hub hello world-Prefix.pch";
 				INFOPLIST_FILE = "geek hub hello world/geek hub hello world-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -551,7 +565,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geek hub hello world/geek hub hello world-Prefix.pch";
 				INFOPLIST_FILE = "geek hub hello world/geek hub hello world-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

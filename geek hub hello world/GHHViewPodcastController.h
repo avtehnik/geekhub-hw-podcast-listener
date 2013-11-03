@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GHHViewPodcastController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface GHHViewPodcastController : UIViewController
+
 @property(strong,nonatomic) NSArray *eposodes;
+@property (weak, nonatomic) IBOutlet UILabel *eposodeTitle;
+@property (weak, nonatomic) IBOutlet UITextView *eposodeTsubtitle;
+@property (weak, nonatomic) IBOutlet UIImageView *eposodeTimage;
 
 @end
