@@ -11,8 +11,10 @@
 @interface GHHViewPodcastController : UIViewController
 
 @property(strong,nonatomic) NSArray *eposodes;
-@property (weak, nonatomic) IBOutlet UILabel *eposodeTitle;
-@property (weak, nonatomic) IBOutlet UITextView *eposodeTsubtitle;
-@property (weak, nonatomic) IBOutlet UIImageView *eposodeTimage;
+
+@property (weak, nonatomic) IBOutlet UILabel *episodeTitle;
+
+@property (weak, nonatomic) IBOutlet UITextView *episodeSubtitle;
+@property (weak, nonatomic) IBOutlet UIImageView *episodeImage;
 
 @end

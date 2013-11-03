@@ -180,10 +180,10 @@
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     GHHViewPodcastController *player = [segue destinationViewController];
 
-//    NSDictionary *eposode =  [self.model episodeAtIndex:path.row];
-//    player.name = [eposode objectForKey:@"title"];
-//    player.subtitle = [eposode objectForKey:@"subtitle"];
-//    [player.image setImageWithURL:[eposode objectForKey:@"url"] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    NSDictionary *episode =  [self.model episodeAtIndex:path.row];
+    player.episodeTitle.text = [episode objectForKey:@"title"];
+    player.episodeSubtitle.text = [episode objectForKey:@"subtitle"];
+    [player.episodeImage setImageWithURL:[episode objectForKey:@"url"] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
 
     
 }

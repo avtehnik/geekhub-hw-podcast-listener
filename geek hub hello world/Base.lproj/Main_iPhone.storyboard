@@ -73,8 +73,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="0lX-pw-JLt"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="o9J-EL-GM4"/>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="RJQ-4M-jZO"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="0vn-a3-P9c"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -162,12 +162,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="hjJ-ao-hGj"/>
                     <connections>
-                        <outlet property="description" destination="HTq-Rn-fcj" id="94G-Qc-XdT"/>
-                        <outlet property="eposodeTimage" destination="Ay5-B4-evA" id="M62-jR-bOB"/>
-                        <outlet property="eposodeTitle" destination="o9H-lh-IXM" id="uKs-HX-KvC"/>
-                        <outlet property="eposodeTsubtitle" destination="HTq-Rn-fcj" id="cpn-Wq-t97"/>
-                        <outlet property="image" destination="Ay5-B4-evA" id="uPz-xC-jm4"/>
-                        <outlet property="title" destination="o9H-lh-IXM" id="wYE-S9-NSb"/>
+                        <outlet property="episodeImage" destination="Ay5-B4-evA" id="pZ0-J7-n0N"/>
+                        <outlet property="episodeSubtitle" destination="HTq-Rn-fcj" id="ykQ-pV-5ep"/>
+                        <outlet property="episodeTitle" destination="o9H-lh-IXM" id="RDo-gb-Ibn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aui-7h-iQM" userLabel="First Responder" sceneMemberID="firstResponder"/>

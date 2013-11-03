@@ -10,13 +10,13 @@
 
 @interface GHHViewPodcastController ()
 
-
 @end
+
 
 
 @implementation GHHViewPodcastController
 
- 
+@synthesize episodeTitle;
 
 - (void)viewDidLoad
 {
