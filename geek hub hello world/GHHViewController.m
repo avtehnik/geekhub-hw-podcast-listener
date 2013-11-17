@@ -43,8 +43,7 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
-
+//    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
 }
 
 

@@ -42,6 +42,10 @@
     self.episodeImage.layer.cornerRadius = 10.0;
     [self.episodeImage setImageWithURL:[self.episode imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     [self play];
+    
+    [self.durationSlider setThumbImage:[UIImage imageNamed:@"player-control-progres.png"] forState:UIControlStateNormal];
+    
+    //[UIColor colorWithPatternImage:[UIImage imageNamed:@"player-bg.png"]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
@@ -76,11 +80,58 @@
     
 }
 
+//
+//-(void)setGradientToSlider:(UISlider*)slider WithColors:(NSArray*)colorArray
+//{
+//    UIView *view=(UIView*)[slider.subviews objectAtIndex:0];
+//    UIImageView *max_trackImageView=(UIImageView*)[view.subviews objectAtIndex:0];
+//    
+//    //setting gradient to max track image view.
+//    
+//    CAGradientLayer* max_trackGradient = [CAGradientLayer layer];
+//    
+//    CGRect rect=max_trackImageView.frame;
+//    rect.origin.x=view.frame.origin.x;
+//    
+//    max_trackGradient.frame=rect;
+//    max_trackGradient.colors = colorArray;
+//    
+//    [max_trackGradient setStartPoint:CGPointMake(0.0, 0.5)];
+//    [max_trackGradient setEndPoint:CGPointMake(1.0, 0.5)];
+//    
+//    [view.layer setCornerRadius:5.0];
+//    [max_trackImageView.layer insertSublayer:max_trackGradient atIndex:0];
+//    
+//    
+//    //Setting gradient to min track ImageView.
+//    
+//    CAGradientLayer* min_trackGradient = [CAGradientLayer layer];
+//    UIImageView *min_trackImageView=(UIImageView*)[slider.subviews objectAtIndex:1];
+//    
+//    rect=min_trackImageView.frame;
+//    rect.size.width=max_trackImageView.frame.size.width;
+//    rect.origin.y=0;
+//    rect.origin.x=0;
+//    
+//    min_trackGradient.frame=rect;
+//    min_trackGradient.colors = colorArray;
+//    [min_trackGradient setStartPoint:CGPointMake(0.0, 0.5)];
+//    [min_trackGradient setEndPoint:CGPointMake(1.0, 0.5)];
+//    
+//    [min_trackImageView.layer setCornerRadius:5.0];
+//    [min_trackImageView.layer insertSublayer:min_trackGradient atIndex:0];
+//}
+
 - (IBAction)moveBack:(id)sender {
     
     NSUInteger time = CMTimeGetSeconds(self.player.currentItem.currentTime);
-    CMTime newTime = CMTimeMakeWithSeconds(time-15, 600);
-    [self.player seekToTime: newTime];
+    if((time-15)>0){
+        CMTime newTime = CMTimeMakeWithSeconds(time-15, 600);
+        [self.player seekToTime: newTime];
+    }else{
+        CMTime newTime = CMTimeMakeWithSeconds(0, 600);
+        [self.player seekToTime: newTime];
+    }
     
 }
 - (IBAction)pause:(id)sender {
@@ -98,10 +149,6 @@
 
 
 - (void)timerFireMethod:(NSTimer *)timer{
-   
-    
-    //CMTime *duration = self.player.currentItem.duration; //total time
-    //CMTime *currentTime = self.player.currentItem.currentTime;
     
     NSUInteger duration = CMTimeGetSeconds(self.player.currentItem.duration);
     NSUInteger time = CMTimeGetSeconds(self.player.currentItem.currentTime);
@@ -111,6 +158,13 @@
     [self.durationSlider setValue:(self.durationSlider.maximumValue - self.durationSlider.minimumValue) * time / duration + 0];
     
     self.episodeTime.text = [NSString stringWithFormat:@"%@ / %@",[self convertTime:time], [self convertTime:duration]];
+    
+//    NSArray *colorArray=[NSArray arrayWithObjects:
+//                         (id) [[UIColor greenColor] CGColor],
+//                         (id)[[UIColor yellowColor] CGColor],
+//                         (id)[[UIColor redColor] CGColor], nil];
+
+   // [self setGradientToSlider:self.durationSlider WithColors:colorArray];
     
 }
 
