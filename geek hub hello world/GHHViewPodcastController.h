@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GHHEpisode.h"
+
 
 @interface GHHViewPodcastController : UIViewController
 
-@property(strong,nonatomic) NSArray *eposodes;
-
-@property (weak, nonatomic) IBOutlet UILabel *episodeTitle;
-
-@property (weak, nonatomic) IBOutlet UITextView *episodeSubtitle;
-@property (weak, nonatomic) IBOutlet UIImageView *episodeImage;
+@property (weak, nonatomic) IBOutlet UILabel *podcastTitle;
+@property (strong,nonatomic) GHHEpisode *episode;
 
 @end

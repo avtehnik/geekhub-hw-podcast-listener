@@ -7,8 +7,10 @@
 //
 
 #import "GHHAppDelegate.h"
+#import "GHHViewController.h"
 
 @implementation GHHAppDelegate
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -16,9 +18,26 @@
     UIColor * color = [UIColor colorWithRed:255/255.0f green:147/255.0f blue:154/255.0f alpha:1.0f];
     [_window setBackgroundColor:color];
     // Override point for customization after application launch.
+    
+    
+    
+//    UIViewController *rootViewcontroller = [[GHHViewController alloc] init];
+//
+//    UINavigationController *navController = [[UINavigationController alloc]
+//                                             initWithRootViewController:rootViewcontroller];
+//    
+//    self.window.rootViewController = navController;
+    
+    [self.window makeKeyAndVisible];
+
+    
     return YES;
+    
+    
+    
+    
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

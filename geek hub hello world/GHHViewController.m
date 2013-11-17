@@ -10,6 +10,7 @@
 #import "GDataXMLNode.h"
 #import "GHHPodcastEpisodeCell.h"
 #import "GHHPodcastModel.h"
+#import "GHHEpisode.h"
 #import "GHHViewPodcastController.h"
 #import "Reachability.h"
 #import "UIImageView+WebCache.h"
@@ -24,13 +25,13 @@
 @property (nonatomic) Reachability *hostReachability;
 @property (nonatomic) Reachability *internetReachability;
 @property (nonatomic) Reachability *wifiReachability;
-@property (strong,nonatomic) GHHPodcastModel *model;
 
 @end
 
+
 @implementation GHHViewController
 
-//@synthesize podcasts;
+@synthesize currentPodcast;
 
 
 
@@ -39,6 +40,11 @@
 {
    // self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.hostActive = YES;
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
+
 }
 
 
@@ -51,9 +57,19 @@
 	 self.hostReachability = [Reachability reachabilityWithHostName:@"www.apple.com"];
 	[self.hostReachability startNotifier];
 	[self updateInterfaceWithReachability:self.hostReachability];
-     self.model = [[GHHPodcastModel alloc] init];
+ 
+    if([self respondsToSelector:@selector(extendedLayoutIncludesOpaqueBars)]){
+        self.extendedLayoutIncludesOpaqueBars = NO;
+    }
+    self.currentPodcast = [GHHPodcast new];
+    
+//    self.edgesForExtendedLayout=UIRectEdgeNone;
+//    self.automaticallyAdjustsScrollViewInsets=NO;
+    
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    	// Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 
@@ -76,10 +92,10 @@
         cell = [[GHHPodcastEpisodeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *eposode = [self.model episodeAtIndex:indexPath.row];
-    cell.subtitle.text = [eposode objectForKey:@"subtitle"];
-    cell.title.text = [eposode objectForKey:@"title"];
-    [cell.image setImageWithURL:[eposode objectForKey:@"url"] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    GHHEpisode *eposode = [self.currentPodcast episodeAtIndex:indexPath.row];
+    cell.subtitle.text = eposode.description;
+    cell.title.text = eposode.title;
+    [cell.image setImageWithURL:[eposode imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     return cell;
 }
@@ -88,7 +104,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
    // NSLog( @"view name %i ", self.podcasts.count);
-    return [self.model count];
+    return [self.currentPodcast count];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -105,23 +121,30 @@
 }
 
 
+-(void)processUrl:(NSString *)url{
+    if(self.hostActive){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            GHHPodcastModel *model = [[GHHPodcastModel alloc] init];
+            self.currentPodcast = [model loadFeedWithUrl: url];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        });
+    }else{
+        UIAlertView* alert = [[UIAlertView alloc] init];
+        [alert setMessage:@"Без интернета немогу"];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setCancelButtonIndex:0];
+        [alert show];
+        
+    }
+}
+
+
 // This method is called once we complete editing
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-      if(self.hostActive){
-          dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-              [self.model loadFeedWithUrl: @"http://laowaicast.rpod.ru/rss.xml"];
-              dispatch_async(dispatch_get_main_queue(), ^{
-                  [self.tableView reloadData];
-              });
-          });
-      }else{
-          UIAlertView* alert = [[UIAlertView alloc] init];
-          [alert setMessage:@"Без интернета немогу"];
-          [alert addButtonWithTitle:@"OK"];
-          [alert setCancelButtonIndex:0];
-          [alert show];
-          
-      }
+    [self processUrl:textField.text];
 }
 
 // This method enables or disables the processing of return key
@@ -177,15 +200,19 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    GHHViewPodcastController *player = [segue destinationViewController];
-
-    NSDictionary *episode =  [self.model episodeAtIndex:path.row];
-    player.episodeTitle.text = [episode objectForKey:@"title"];
-    player.episodeSubtitle.text = [episode objectForKey:@"subtitle"];
-    [player.episodeImage setImageWithURL:[episode objectForKey:@"url"] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-
     
+    NSLog(@"prapare");
+    
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    
+    GHHViewPodcastController *pv = [[GHHViewPodcastController alloc] init];
+    
+    pv = [segue destinationViewController];
+    GHHEpisode *episode =  [self.currentPodcast episodeAtIndex:path.row];
+    pv.podcastTitle.text = self.currentPodcast.name;
+    pv.episode = episode;
+    UIView * view = pv.view;
+
 }
 
 

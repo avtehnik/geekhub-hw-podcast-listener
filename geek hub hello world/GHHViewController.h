@@ -7,16 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GHHPodcast.h"
 
 @class Reachability;
 
 @interface GHHViewController : UIViewController< UITextFieldDelegate,UITableViewDataSource, UITableViewDelegate,
 
+
 UINavigationBarDelegate>{
     Reachability* internetReachable;
     Reachability* hostReachable;
+    
 }
 
+@property (strong,nonatomic) GHHPodcast *currentPodcast;
 
 @end

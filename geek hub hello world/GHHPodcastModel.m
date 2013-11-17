@@ -8,6 +8,7 @@
 
 #import "GHHPodcastModel.h"
 #import "GDataXMLNode.h"
+
 @interface GHHPodcastModel ()
 
 @property ( strong, nonatomic) NSArray *eposodes;
@@ -22,7 +23,9 @@
 }
 
 
--(void)loadFeedWithUrl:(NSString *)url{
+-(GHHPodcast*)loadFeedWithUrl:(NSString *)url{
+    
+    GHHPodcast *podcast = [[GHHPodcast alloc] init];
     
     NSURL * requestURL = [NSURL URLWithString:url];
     NSURLRequest * request = [NSURLRequest requestWithURL:requestURL];
@@ -40,49 +43,54 @@
         NSLog(@"%@", error);
     }
  
+  
+    NSArray *podcastTitle = [doc nodesForXPath:@"//channel/title" error:&error];
+    if (podcastTitle.count > 0) {
+        GDataXMLElement * xmlTitle = podcastTitle[0];
+        podcast.name = xmlTitle.stringValue;
+    }
+    
+    NSArray *podcastImage = [doc nodesForXPath:@"//channel/image/url" error:&error];
+    if (podcastImage.count > 0) {
+        GDataXMLElement * xmlImage = podcastImage[0];
+        podcast.image = xmlImage.stringValue;
+    }
     
     NSArray *episodes = [doc nodesForXPath:@"//channel/item" error:&error];
     NSMutableArray *newEpisodes = [[NSMutableArray alloc] init];
     for( GDataXMLElement *episode in episodes){
-        NSMutableDictionary *newEpisode=[[NSMutableDictionary alloc]init];
+        GHHEpisode *episodeItem=[[GHHEpisode alloc]init];
         
         NSArray *titles = [episode elementsForName:@"title"];
         if (titles.count > 0) {
-            GDataXMLElement * title = titles[0];
-            [newEpisode setObject:title.stringValue forKey:@"title"];
+            GDataXMLElement * xmlTitle = titles[0];
+            episodeItem.title = xmlTitle.stringValue;
         }
         NSArray *descriptions = [episode elementsForName:@"itunes:subtitle"];
         if (descriptions.count > 0) {
-            GDataXMLElement * description = descriptions[0];
-            [newEpisode setObject:description.stringValue forKey:@"subtitle"];
-            // cell.subtitle.text = description.stringValue;
+            GDataXMLElement * xmlDescription = descriptions[0];
+            episodeItem.description = xmlDescription.stringValue;
         }
         
         NSArray *url = [episode elementsForName:@"itunes:image"];
         if (url.count > 0){
-            GDataXMLElement * link = url[0];
-            [newEpisode setObject:[NSURL URLWithString:[[link attributeForName:@"href"] stringValue]] forKey:@"url"];
+            GDataXMLElement * xmlLink = url[0];
+            episodeItem.image = [[xmlLink attributeForName:@"href"] stringValue];
         }
         
+        NSArray *mp3 = [episode elementsForName:@"enclosure"];
+        if (mp3.count > 0){
+            GDataXMLElement * xmlLink = mp3[0];
+            episodeItem.audiofile = [[xmlLink attributeForName:@"url"] stringValue];
+        }
         
-        [newEpisodes addObject:[NSDictionary dictionaryWithDictionary:newEpisode]];
+        [newEpisodes addObject:episodeItem];
     }
     
-    self.eposodes = [NSArray arrayWithArray:newEpisodes];
-    
+    podcast.episodes = [NSArray arrayWithArray:newEpisodes];
+
+    return podcast;
 }
-
-
--(id)episodeAtIndex:(NSUInteger)index{
-    return [self.eposodes objectAtIndex:index];
-}
-
-
--(NSUInteger)count{
-    return self.eposodes.count;
-}
-
-
 
 
 @end

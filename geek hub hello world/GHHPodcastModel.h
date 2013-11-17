@@ -7,14 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "GHHEpisode.h"
+#import "GHHPodcast.h"
 
 @interface GHHPodcastModel : NSObject
 
 @property(strong, nonatomic) NSArray *feed;
 
--(void)loadFeedWithUrl:(NSString *)url;
--(id)episodeAtIndex:(NSUInteger)index;;
--(NSUInteger)count;
+-(GHHPodcast*)loadFeedWithUrl:(NSString *)url;
 
 @end
