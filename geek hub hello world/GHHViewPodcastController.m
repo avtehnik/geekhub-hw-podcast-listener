@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *episodeImage;
 @property (weak, nonatomic) IBOutlet UISlider *durationSlider;
 @property (weak, nonatomic) IBOutlet UILabel *episodeTime;
+@property (strong, nonatomic) GHHEpisode *episode;
 
 
 @property (nonatomic, retain) AVPlayer *player;
@@ -30,24 +31,39 @@
 
 @implementation GHHViewPodcastController
 
-@synthesize episode;
 
 - (void)viewDidLoad
 {
-    
+
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"player-bg.png"]];
-    self.episodeTitle.text = episode.title;
-    self.audioFile = [episode audioUrl];
-    self.episodeImage.layer.masksToBounds = YES;
-    self.episodeImage.layer.cornerRadius = 10.0;
-    [self.episodeImage setImageWithURL:[self.episode imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    
+    self.episode =  [self.podcast episodeAtIndex:self.episodeIndex];
+    NSLog(@"episode %i",self.episodeIndex);
+    [self applayEpisode];
     [self play];
     
     [self.durationSlider setThumbImage:[UIImage imageNamed:@"player-control-progres.png"] forState:UIControlStateNormal];
     
-    //[UIColor colorWithPatternImage:[UIImage imageNamed:@"player-bg.png"]];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+
+
+-(void)willMoveToParentViewController:(UIViewController *)parent {
+    if (!parent){
+        NSLog(@"episode pause");
+        [self.player pause];
+    }
+}
+
+- (void)applayEpisode{
+    self.episodeTitle.text = self.episode.title;
+    self.audioFile = [self.episode audioUrl];
+    self.episodeImage.layer.masksToBounds = YES;
+    self.episodeImage.layer.cornerRadius = 10.0;
+    [self.episodeImage setImageWithURL:[self.episode imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,9 +71,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)nextEpisode:(id)sender {
+    
+    self.episodeIndex++;
+    if(self.podcast.count>=self.episodeIndex){
+        self.episode =  [self.podcast episodeAtIndex:self.episodeIndex];
+        [self applayEpisode];
+    }
+    
+}
 
 -(void)play{
     
+    if(!self.player
     self.player = [[AVPlayer alloc]initWithURL:[self.episode audioUrl]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -125,7 +151,7 @@
 - (IBAction)moveBack:(id)sender {
     
     NSUInteger time = CMTimeGetSeconds(self.player.currentItem.currentTime);
-    if((time-15)>0){
+    if(time>17){
         CMTime newTime = CMTimeMakeWithSeconds(time-15, 600);
         [self.player seekToTime: newTime];
     }else{
@@ -140,11 +166,6 @@
     }else{
         [self.player play];
     }
-}
-- (IBAction)moveToEnd:(id)sender {
-    NSUInteger time = CMTimeGetSeconds(self.player.currentItem.currentTime);
-    CMTime newTime = CMTimeMakeWithSeconds(time+300, 600);
-    [self.player seekToTime: newTime];
 }
 
 

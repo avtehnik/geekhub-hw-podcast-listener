@@ -25,7 +25,6 @@
 		FE2F31AD18076767008910DD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE2F31AB18076767008910DD /* InfoPlist.strings */; };
 		FE2F31AF18076767008910DD /* geek_hub_hello_worldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2F31AE18076767008910DD /* geek_hub_hello_worldTests.m */; };
 		FE391FCF1837F85100F71C62 /* GHHEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = FE391FCE1837F85100F71C62 /* GHHEpisode.m */; };
-		FE391FD5183820CB00F71C62 /* player-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FE391FD4183820CB00F71C62 /* player-bg.png */; };
 		FE391FD91838243300F71C62 /* GHHPodcast.m in Sources */ = {isa = PBXBuildFile; fileRef = FE391FD81838243300F71C62 /* GHHPodcast.m */; };
 		FE391FDB1838375200F71C62 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE391FDA1838375200F71C62 /* AVFoundation.framework */; };
 		FE391FDE1838382C00F71C62 /* test.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FE391FDD1838382C00F71C62 /* test.mp3 */; };
@@ -41,6 +40,8 @@
 		FE391FFE1838C23800F71C62 /* player-control-progres@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE391FFC1838C23800F71C62 /* player-control-progres@2x.png */; };
 		FE3920011838C88800F71C62 /* player-control-slider-progress.png in Resources */ = {isa = PBXBuildFile; fileRef = FE391FFF1838C88800F71C62 /* player-control-slider-progress.png */; };
 		FE3920021838C88800F71C62 /* player-control-slider-progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE3920001838C88800F71C62 /* player-control-slider-progress@2x.png */; };
+		FE392005183BCC5700F71C62 /* player-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FE392003183BCC5700F71C62 /* player-bg.png */; };
+		FE392006183BCC5700F71C62 /* player-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE392004183BCC5700F71C62 /* player-bg@2x.png */; };
 		FE5BE3DA181B67CC001FF07E /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3BE181B67CC001FF07E /* MKAnnotationView+WebCache.m */; };
 		FE5BE3DB181B67CC001FF07E /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3C0181B67CC001FF07E /* NSData+GIF.m */; };
 		FE5BE3DC181B67CC001FF07E /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3C2181B67CC001FF07E /* SDImageCache.m */; };
@@ -98,7 +99,6 @@
 		FE2F31AE18076767008910DD /* geek_hub_hello_worldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = geek_hub_hello_worldTests.m; sourceTree = "<group>"; };
 		FE391FCD1837F85100F71C62 /* GHHEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHEpisode.h; sourceTree = "<group>"; };
 		FE391FCE1837F85100F71C62 /* GHHEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHEpisode.m; sourceTree = "<group>"; };
-		FE391FD4183820CB00F71C62 /* player-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg.png"; sourceTree = "<group>"; };
 		FE391FD71838243300F71C62 /* GHHPodcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHPodcast.h; sourceTree = "<group>"; };
 		FE391FD81838243300F71C62 /* GHHPodcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHPodcast.m; sourceTree = "<group>"; };
 		FE391FDA1838375200F71C62 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -115,6 +115,8 @@
 		FE391FFC1838C23800F71C62 /* player-control-progres@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-control-progres@2x.png"; sourceTree = "<group>"; };
 		FE391FFF1838C88800F71C62 /* player-control-slider-progress.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-control-slider-progress.png"; sourceTree = "<group>"; };
 		FE3920001838C88800F71C62 /* player-control-slider-progress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-control-slider-progress@2x.png"; sourceTree = "<group>"; };
+		FE392003183BCC5700F71C62 /* player-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg.png"; sourceTree = "<group>"; };
+		FE392004183BCC5700F71C62 /* player-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg@2x.png"; sourceTree = "<group>"; };
 		FE5BE3BD181B67CC001FF07E /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		FE5BE3BE181B67CC001FF07E /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		FE5BE3BF181B67CC001FF07E /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
@@ -316,7 +318,8 @@
 		FE391FD6183820D700F71C62 /* bg */ = {
 			isa = PBXGroup;
 			children = (
-				FE391FD4183820CB00F71C62 /* player-bg.png */,
+				FE392003183BCC5700F71C62 /* player-bg.png */,
+				FE392004183BCC5700F71C62 /* player-bg@2x.png */,
 			);
 			name = bg;
 			sourceTree = "<group>";
@@ -455,15 +458,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE391FDE1838382C00F71C62 /* test.mp3 in Resources */,
+				FE392005183BCC5700F71C62 /* player-bg.png in Resources */,
 				FE391FFA1838BCC900F71C62 /* player-control-button-round-bg@2x.png in Resources */,
 				FE391FF41838BC2600F71C62 /* player-control-15.png in Resources */,
 				FE3920011838C88800F71C62 /* player-control-slider-progress.png in Resources */,
 				FE2F319718076767008910DD /* Main_iPad.storyboard in Resources */,
 				FE3920021838C88800F71C62 /* player-control-slider-progress@2x.png in Resources */,
+				FE392006183BCC5700F71C62 /* player-bg@2x.png in Resources */,
 				FE391FFE1838C23800F71C62 /* player-control-progres@2x.png in Resources */,
 				FE391FF91838BCC900F71C62 /* player-control-button-round-bg.png in Resources */,
 				FE391FEF1838BC0200F71C62 /* player-control-pause@2x.png in Resources */,
-				FE391FD5183820CB00F71C62 /* player-bg.png in Resources */,
 				FE391FEE1838BC0200F71C62 /* player-control-15@2x.png in Resources */,
 				FE2F319C18076767008910DD /* Images.xcassets in Resources */,
 				FE2F319418076767008910DD /* Main_iPhone.storyboard in Resources */,

@@ -61,11 +61,6 @@
         self.extendedLayoutIncludesOpaqueBars = NO;
     }
     self.currentPodcast = [GHHPodcast new];
-    
-//    self.edgesForExtendedLayout=UIRectEdgeNone;
-//    self.automaticallyAdjustsScrollViewInsets=NO;
-    
-    
     [super viewDidLoad];
     	// Do any additional setup after loading the view, typically from a nib.
     
@@ -122,10 +117,13 @@
 
 -(void)processUrl:(NSString *)url{
     if(self.hostActive){
+        
+        
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
             GHHPodcastModel *model = [[GHHPodcastModel alloc] init];
             self.currentPodcast = [model loadFeedWithUrl: url];
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.tableView reloadData];
             });
@@ -197,21 +195,29 @@
 }
 
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    
-    NSLog(@"prapare");
-    
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-    
-    GHHViewPodcastController *pv = [[GHHViewPodcastController alloc] init];
-    
-    pv = [segue destinationViewController];
-    GHHEpisode *episode =  [self.currentPodcast episodeAtIndex:path.row];
-    pv.podcastTitle.text = self.currentPodcast.name;
-    pv.episode = episode;
-    UIView * view = pv.view;
+ 
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+   
+    if ([[segue identifier] isEqualToString:@"GHHViewPodcastControllerSegue"]) {
+        
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        
+        GHHViewPodcastController *pv = [self.storyboard instantiateViewControllerWithIdentifier:@"GHHViewPodcastController"];
+        
+        pv.podcastTitle.text = self.currentPodcast.name;
+        pv.podcast = self.currentPodcast;
+        pv.episodeIndex = path.row;
+        
+        
+        UIView *view = pv.view;
+        
+    }
+
+    
+  //  NSLog(@"prapare");
+    
+   
 }
 
 
