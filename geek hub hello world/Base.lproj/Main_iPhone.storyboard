@@ -167,7 +167,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="moveToEnd:" destination="XP5-Ms-WHg" eventType="touchUpInside" id="E4Y-9n-Er0"/>
                                     <action selector="nextEpisode:" destination="XP5-Ms-WHg" eventType="touchUpInside" id="yhA-Gh-tjL"/>
                                 </connections>
                             </button>

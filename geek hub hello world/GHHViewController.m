@@ -43,7 +43,7 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-//    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
+    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
 }
 
 
@@ -199,24 +199,26 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
    
+    
+    
     if ([[segue identifier] isEqualToString:@"GHHViewPodcastControllerSegue"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
         
-        GHHViewPodcastController *pv = [self.storyboard instantiateViewControllerWithIdentifier:@"GHHViewPodcastController"];
         
+        GHHViewPodcastController *pv =  segue.destinationViewController;
         pv.podcastTitle.text = self.currentPodcast.name;
         pv.podcast = self.currentPodcast;
-        pv.episodeIndex = path.row;
+        [pv setEpisodeIndex: path.row];
         
         
-        UIView *view = pv.view;
+        NSLog(@"prapare %@ ", pv);
+
+        
+        
         
     }
 
-    
-  //  NSLog(@"prapare");
-    
    
 }
 
