@@ -140,6 +140,7 @@
 
 - (void)applayEpisode{
     self.episodeTitle.text = self.episode.title;
+    NSLog(@"title %@", self.episodeTitle.text );
     self.audioFile = [self.episode audioUrl];
     self.episodeImage.layer.masksToBounds = YES;
     self.episodeImage.layer.cornerRadius = 3.0;
