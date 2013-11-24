@@ -43,13 +43,14 @@
 }
 
 -(void) viewDidAppear:(BOOL)animated{
-    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
+   // [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
 }
 
 
 - (void)viewDidLoad
 {
     self.title = @"PodCasts";
+    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
     
@@ -204,19 +205,11 @@
     if ([[segue identifier] isEqualToString:@"GHHViewPodcastControllerSegue"]) {
         
         NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        
-        
         GHHViewPodcastController *pv =  segue.destinationViewController;
         pv.podcastTitle.text = self.currentPodcast.name;
         pv.podcast = self.currentPodcast;
         [pv setEpisodeIndex: path.row];
-        
-        
-        NSLog(@"prapare %@ ", pv);
-
-        
-        
-        
+        [pv.navigationItem.backBarButtonItem setTitle:@"Your Custom Title"];
     }
 
    

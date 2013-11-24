@@ -90,8 +90,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="frs-jI-EAs"/>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="4XE-rD-2Cl"/>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="7qf-3d-UEU"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Kmj-AC-IC1"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -189,7 +189,7 @@
                                 </constraints>
                             </imageView>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7vk-OQ-6wn">
-                                <rect key="frame" x="48" y="285" width="224" height="34"/>
+                                <rect key="frame" x="48" y="287" width="224" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="navigate:" destination="XP5-Ms-WHg" eventType="valueChanged" id="1Tg-Yn-xpb"/>
@@ -219,7 +219,7 @@
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="tCf-10-u6h" firstAttribute="top" secondItem="aNF-Fh-3QB" secondAttribute="bottom" constant="8" id="2tK-QU-UJW"/>
-                            <constraint firstItem="aNF-Fh-3QB" firstAttribute="top" secondItem="7vk-OQ-6wn" secondAttribute="bottom" constant="3" id="5U9-Gp-L77"/>
+                            <constraint firstItem="aNF-Fh-3QB" firstAttribute="top" secondItem="7vk-OQ-6wn" secondAttribute="bottom" constant="1" id="5U9-Gp-L77"/>
                             <constraint firstItem="znU-tb-Q3X" firstAttribute="leading" secondItem="tCf-10-u6h" secondAttribute="trailing" constant="-108" id="5lp-wr-LbL"/>
                             <constraint firstItem="tCf-10-u6h" firstAttribute="leading" secondItem="FwU-eT-3FO" secondAttribute="trailing" constant="66" id="B6N-xY-3cE"/>
                             <constraint firstItem="aNF-Fh-3QB" firstAttribute="trailing" secondItem="llY-kp-38m" secondAttribute="trailing" id="BmT-bK-hEt"/>
@@ -228,7 +228,7 @@
                             <constraint firstItem="llY-kp-38m" firstAttribute="leading" secondItem="Nav-hK-bOW" secondAttribute="leading" constant="20" id="RHq-6M-ajs"/>
                             <constraint firstItem="o9H-lh-IXM" firstAttribute="leading" secondItem="Nav-hK-bOW" secondAttribute="leading" constant="20" id="Sn2-ZT-f5i"/>
                             <constraint firstItem="o9H-lh-IXM" firstAttribute="top" secondItem="llY-kp-38m" secondAttribute="bottom" constant="17" id="UHk-Ol-eNC"/>
-                            <constraint firstItem="7vk-OQ-6wn" firstAttribute="top" secondItem="onW-c1-8oz" secondAttribute="bottom" constant="221" id="VV6-GK-vjU"/>
+                            <constraint firstItem="7vk-OQ-6wn" firstAttribute="top" secondItem="onW-c1-8oz" secondAttribute="bottom" constant="223" id="VV6-GK-vjU"/>
                             <constraint firstItem="Ay5-B4-evA" firstAttribute="top" secondItem="onW-c1-8oz" secondAttribute="bottom" constant="16" id="W0r-Me-9sK"/>
                             <constraint firstAttribute="trailing" secondItem="o9H-lh-IXM" secondAttribute="trailing" constant="20" id="Z5d-Xk-czE"/>
                             <constraint firstAttribute="trailing" secondItem="7vk-OQ-6wn" secondAttribute="trailing" constant="50" id="ZQv-Ws-CVs"/>
