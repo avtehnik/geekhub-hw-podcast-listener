@@ -7,7 +7,7 @@
 //
 
 #import "GHHAppDelegate.h"
-#import "GHHViewController.h"
+#import "GHHViewEpisodesController.h"
 
 @implementation GHHAppDelegate
 
@@ -17,26 +17,13 @@
     
     UIColor * color = [UIColor colorWithRed:255/255.0f green:147/255.0f blue:154/255.0f alpha:1.0f];
     [_window setBackgroundColor:color];
-    // Override point for customization after application launch.
-    
-    
-    
-//    UIViewController *rootViewcontroller = [[GHHViewController alloc] init];
-//
-//    UINavigationController *navController = [[UINavigationController alloc]
-//                                             initWithRootViewController:rootViewcontroller];
-//    
-//    self.window.rootViewController = navController;
     
     [self.window makeKeyAndVisible];
-
-    
+    [GHHDB initDB];
     return YES;
     
-    
-    
-    
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -62,6 +49,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [GHHDB close];
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 

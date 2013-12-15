@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GHHDB.h"
+#import "FMDatabase.h"
+
 
 @interface GHHAppDelegate : UIResponder <UIApplicationDelegate>
 

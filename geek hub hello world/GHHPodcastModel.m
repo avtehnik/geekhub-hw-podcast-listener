@@ -69,7 +69,7 @@
         NSArray *descriptions = [episode elementsForName:@"itunes:subtitle"];
         if (descriptions.count > 0) {
             GDataXMLElement * xmlDescription = descriptions[0];
-            episodeItem.description = xmlDescription.stringValue;
+            episodeItem.text = xmlDescription.stringValue;
         }
         
         NSArray *url = [episode elementsForName:@"itunes:image"];
@@ -85,9 +85,12 @@
         }
         
         [newEpisodes addObject:episodeItem];
+        
+        
     }
     
     podcast.episodes = [NSArray arrayWithArray:newEpisodes];
+    [podcast store];
 
     return podcast;
 }

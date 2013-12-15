@@ -1,0 +1,6 @@
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/FMDB" "${PODS_ROOT}/Headers/SQLCipher"
+LIBRARY_SEARCH_PATHS = $(inherited) "$(PODS_ROOT)/SQLCipher"
+OTHER_CFLAGS = $(inherited) -DSQLITE_HAS_CODEC $(inherited) -DSQLITE_HAS_CODEC
+OTHER_LDFLAGS = -ObjC -lcrypto -lsqlcipher
+PODS_ROOT = ${SRCROOT}/Pods

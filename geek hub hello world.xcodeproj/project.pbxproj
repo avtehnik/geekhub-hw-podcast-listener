@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FE080824182424550056264D /* GHHPodcastModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE080823182424550056264D /* GHHPodcastModel.m */; };
-		FE167621180F3BCC00CA48E2 /* GHHViewPodcastController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE16761F180F3BCC00CA48E2 /* GHHViewPodcastController.m */; };
+		FE167621180F3BCC00CA48E2 /* GHHViewPodcastPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE16761F180F3BCC00CA48E2 /* GHHViewPodcastPlayerController.m */; };
 		FE2F318118076767008910DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318018076767008910DD /* Foundation.framework */; };
 		FE2F318318076767008910DD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318218076767008910DD /* CoreGraphics.framework */; };
 		FE2F318518076767008910DD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318418076767008910DD /* UIKit.framework */; };
@@ -17,7 +17,7 @@
 		FE2F319118076767008910DD /* GHHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2F319018076767008910DD /* GHHAppDelegate.m */; };
 		FE2F319418076767008910DD /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2F319218076767008910DD /* Main_iPhone.storyboard */; };
 		FE2F319718076767008910DD /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2F319518076767008910DD /* Main_iPad.storyboard */; };
-		FE2F319A18076767008910DD /* GHHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2F319918076767008910DD /* GHHViewController.m */; };
+		FE2F319A18076767008910DD /* GHHViewEpisodesController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2F319918076767008910DD /* GHHViewEpisodesController.m */; };
 		FE2F319C18076767008910DD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE2F319B18076767008910DD /* Images.xcassets */; };
 		FE2F31A318076767008910DD /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F31A218076767008910DD /* XCTest.framework */; };
 		FE2F31A418076767008910DD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2F318018076767008910DD /* Foundation.framework */; };
@@ -50,6 +50,12 @@
 		FE3920021838C88800F71C62 /* player-control-slider-progress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE3920001838C88800F71C62 /* player-control-slider-progress@2x.png */; };
 		FE392005183BCC5700F71C62 /* player-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = FE392003183BCC5700F71C62 /* player-bg.png */; };
 		FE392006183BCC5700F71C62 /* player-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FE392004183BCC5700F71C62 /* player-bg@2x.png */; };
+		FE39D32C1857846E00998113 /* Player.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = FE9E169C184E5F040005CF28 /* Player.sqlite */; };
+		FE39D32F1857850D00998113 /* GHHDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE39D32E1857850D00998113 /* GHHDB.m */; };
+		FE39D33118578B2600998113 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE39D33018578B2600998113 /* libsqlite3.0.dylib */; };
+		FE39D33318578C5700998113 /* libPods-FMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE39D33218578C5700998113 /* libPods-FMDB.a */; };
+		FE39D336185CF7EB00998113 /* GHHViewPodcastsController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE39D335185CF7EB00998113 /* GHHViewPodcastsController.m */; };
+		FE39D339185D11C700998113 /* GHHViewAddPodcastController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE39D338185D11C700998113 /* GHHViewAddPodcastController.m */; };
 		FE5BE3DA181B67CC001FF07E /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3BE181B67CC001FF07E /* MKAnnotationView+WebCache.m */; };
 		FE5BE3DB181B67CC001FF07E /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3C0181B67CC001FF07E /* NSData+GIF.m */; };
 		FE5BE3DC181B67CC001FF07E /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3C2181B67CC001FF07E /* SDImageCache.m */; };
@@ -81,10 +87,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E25937A0C5644D2F88E4B053 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		FE080822182424540056264D /* GHHPodcastModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHPodcastModel.h; sourceTree = "<group>"; };
 		FE080823182424550056264D /* GHHPodcastModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHPodcastModel.m; sourceTree = "<group>"; };
-		FE16761E180F3BCC00CA48E2 /* GHHViewPodcastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHViewPodcastController.h; sourceTree = "<group>"; };
-		FE16761F180F3BCC00CA48E2 /* GHHViewPodcastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHViewPodcastController.m; sourceTree = "<group>"; };
+		FE16761E180F3BCC00CA48E2 /* GHHViewPodcastPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHViewPodcastPlayerController.h; sourceTree = "<group>"; };
+		FE16761F180F3BCC00CA48E2 /* GHHViewPodcastPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHViewPodcastPlayerController.m; sourceTree = "<group>"; };
 		FE2F317D18076767008910DD /* geek hub hello world.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "geek hub hello world.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE2F318018076767008910DD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FE2F318218076767008910DD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -97,8 +104,8 @@
 		FE2F319018076767008910DD /* GHHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHHAppDelegate.m; sourceTree = "<group>"; };
 		FE2F319318076767008910DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		FE2F319618076767008910DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		FE2F319818076767008910DD /* GHHViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHHViewController.h; sourceTree = "<group>"; };
-		FE2F319918076767008910DD /* GHHViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHHViewController.m; sourceTree = "<group>"; };
+		FE2F319818076767008910DD /* GHHViewEpisodesController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHHViewEpisodesController.h; sourceTree = "<group>"; };
+		FE2F319918076767008910DD /* GHHViewEpisodesController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHHViewEpisodesController.m; sourceTree = "<group>"; };
 		FE2F319B18076767008910DD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		FE2F31A118076767008910DD /* geek hub hello worldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "geek hub hello worldTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE2F31A218076767008910DD /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -133,6 +140,14 @@
 		FE3920001838C88800F71C62 /* player-control-slider-progress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-control-slider-progress@2x.png"; sourceTree = "<group>"; };
 		FE392003183BCC5700F71C62 /* player-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg.png"; sourceTree = "<group>"; };
 		FE392004183BCC5700F71C62 /* player-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "player-bg@2x.png"; sourceTree = "<group>"; };
+		FE39D32D1857850D00998113 /* GHHDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHDB.h; sourceTree = "<group>"; };
+		FE39D32E1857850D00998113 /* GHHDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHDB.m; sourceTree = "<group>"; };
+		FE39D33018578B2600998113 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		FE39D33218578C5700998113 /* libPods-FMDB.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-FMDB.a"; path = "Pods/build/Debug-iphoneos/libPods-FMDB.a"; sourceTree = "<group>"; };
+		FE39D334185CF7EB00998113 /* GHHViewPodcastsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHViewPodcastsController.h; sourceTree = "<group>"; };
+		FE39D335185CF7EB00998113 /* GHHViewPodcastsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHViewPodcastsController.m; sourceTree = "<group>"; };
+		FE39D337185D11C700998113 /* GHHViewAddPodcastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHViewAddPodcastController.h; sourceTree = "<group>"; };
+		FE39D338185D11C700998113 /* GHHViewAddPodcastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHViewAddPodcastController.m; sourceTree = "<group>"; };
 		FE5BE3BD181B67CC001FF07E /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		FE5BE3BE181B67CC001FF07E /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		FE5BE3BF181B67CC001FF07E /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
@@ -167,6 +182,7 @@
 		FE7C6428181B40A300C8DF11 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		FE7C6429181B40A300C8DF11 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		FE7C642B181B44F700C8DF11 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		FE9E169C184E5F040005CF28 /* Player.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Player.sqlite; sourceTree = "<group>"; };
 		FEFDE217181B4F010016C4F5 /* GHHPodcastEpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHPodcastEpisodeCell.h; sourceTree = "<group>"; };
 		FEFDE218181B4F010016C4F5 /* GHHPodcastEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHPodcastEpisodeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,6 +192,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE39D33318578C5700998113 /* libPods-FMDB.a in Frameworks */,
+				FE39D33118578B2600998113 /* libsqlite3.0.dylib in Frameworks */,
 				FE391FDB1838375200F71C62 /* AVFoundation.framework in Frameworks */,
 				FE7C642C181B44F700C8DF11 /* libxml2.dylib in Frameworks */,
 				FE2F318318076767008910DD /* CoreGraphics.framework in Frameworks */,
@@ -202,6 +220,8 @@
 			children = (
 				FE080822182424540056264D /* GHHPodcastModel.h */,
 				FE080823182424550056264D /* GHHPodcastModel.m */,
+				FE39D32D1857850D00998113 /* GHHDB.h */,
+				FE39D32E1857850D00998113 /* GHHDB.m */,
 			);
 			name = modls;
 			sourceTree = "<group>";
@@ -210,10 +230,11 @@
 			isa = PBXGroup;
 			children = (
 				FE5BE3BC181B67CC001FF07E /* SDWebImage */,
-				FE2F318618076767008910DD /* geek hub hello world */,
+				FE2F318618076767008910DD /* player */,
 				FE2F31A818076767008910DD /* geek hub hello worldTests */,
 				FE2F317F18076767008910DD /* Frameworks */,
 				FE2F317E18076767008910DD /* Products */,
+				E25937A0C5644D2F88E4B053 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,6 +250,8 @@
 		FE2F317F18076767008910DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE39D33218578C5700998113 /* libPods-FMDB.a */,
+				FE39D33018578B2600998113 /* libsqlite3.0.dylib */,
 				FE391FDA1838375200F71C62 /* AVFoundation.framework */,
 				FE7C642B181B44F700C8DF11 /* libxml2.dylib */,
 				FE2F318018076767008910DD /* Foundation.framework */,
@@ -239,9 +262,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FE2F318618076767008910DD /* geek hub hello world */ = {
+		FE2F318618076767008910DD /* player */ = {
 			isa = PBXGroup;
 			children = (
+				FE9E169C184E5F040005CF28 /* Player.sqlite */,
 				FE391FDC183837A500F71C62 /* test-audio-files */,
 				FE391FD018381A3800F71C62 /* images */,
 				FE391FCC1837F81E00F71C62 /* entity */,
@@ -260,6 +284,7 @@
 				FEFDE217181B4F010016C4F5 /* GHHPodcastEpisodeCell.h */,
 				FEFDE218181B4F010016C4F5 /* GHHPodcastEpisodeCell.m */,
 			);
+			name = player;
 			path = "geek hub hello world";
 			sourceTree = "<group>";
 		};
@@ -404,10 +429,14 @@
 		FEB6C0A2181320B00006DC65 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FE16761E180F3BCC00CA48E2 /* GHHViewPodcastController.h */,
-				FE16761F180F3BCC00CA48E2 /* GHHViewPodcastController.m */,
-				FE2F319818076767008910DD /* GHHViewController.h */,
-				FE2F319918076767008910DD /* GHHViewController.m */,
+				FE16761E180F3BCC00CA48E2 /* GHHViewPodcastPlayerController.h */,
+				FE16761F180F3BCC00CA48E2 /* GHHViewPodcastPlayerController.m */,
+				FE2F319818076767008910DD /* GHHViewEpisodesController.h */,
+				FE2F319918076767008910DD /* GHHViewEpisodesController.m */,
+				FE39D334185CF7EB00998113 /* GHHViewPodcastsController.h */,
+				FE39D335185CF7EB00998113 /* GHHViewPodcastsController.m */,
+				FE39D337185D11C700998113 /* GHHViewAddPodcastController.h */,
+				FE39D338185D11C700998113 /* GHHViewAddPodcastController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -419,9 +448,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE2F31B218076767008910DD /* Build configuration list for PBXNativeTarget "geek hub hello world" */;
 			buildPhases = (
+				1B71F1838D704961B574C164 /* Check Pods Manifest.lock */,
 				FE2F317918076767008910DD /* Sources */,
 				FE2F317A18076767008910DD /* Frameworks */,
 				FE2F317B18076767008910DD /* Resources */,
+				2BB124CDA3634BEF9A7F4497 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -489,6 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE39D32C1857846E00998113 /* Player.sqlite in Resources */,
 				FE391FDE1838382C00F71C62 /* test.mp3 in Resources */,
 				FE392005183BCC5700F71C62 /* player-bg.png in Resources */,
 				FE391FFA1838BCC900F71C62 /* player-control-button-round-bg@2x.png in Resources */,
@@ -529,6 +561,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1B71F1838D704961B574C164 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2BB124CDA3634BEF9A7F4497 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FE2F317918076767008910DD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -536,13 +601,14 @@
 			files = (
 				FE5BE3E4181B67CC001FF07E /* UIImage+GIF.m in Sources */,
 				FE5BE3DD181B67CC001FF07E /* SDWebImageCompat.m in Sources */,
+				FE39D339185D11C700998113 /* GHHViewAddPodcastController.m in Sources */,
 				FE5BE3E3181B67CC001FF07E /* UIButton+WebCache.m in Sources */,
 				FE5BE3E5181B67CC001FF07E /* UIImage+MultiFormat.m in Sources */,
 				FE5BE3E2181B67CC001FF07E /* SDWebImagePrefetcher.m in Sources */,
-				FE2F319A18076767008910DD /* GHHViewController.m in Sources */,
+				FE2F319A18076767008910DD /* GHHViewEpisodesController.m in Sources */,
 				FE5BE3DA181B67CC001FF07E /* MKAnnotationView+WebCache.m in Sources */,
 				FE5BE3E6181B67CC001FF07E /* UIImage+WebP.m in Sources */,
-				FE167621180F3BCC00CA48E2 /* GHHViewPodcastController.m in Sources */,
+				FE167621180F3BCC00CA48E2 /* GHHViewPodcastPlayerController.m in Sources */,
 				FE5BE3E0181B67CC001FF07E /* SDWebImageDownloaderOperation.m in Sources */,
 				FE5BE3DE181B67CC001FF07E /* SDWebImageDecoder.m in Sources */,
 				FE5BE3E7181B67CC001FF07E /* UIImageView+WebCache.m in Sources */,
@@ -553,8 +619,10 @@
 				FEFDE219181B4F010016C4F5 /* GHHPodcastEpisodeCell.m in Sources */,
 				FE2F318D18076767008910DD /* main.m in Sources */,
 				FE7C6427181B22C900C8DF11 /* Reachability.m in Sources */,
+				FE39D336185CF7EB00998113 /* GHHViewPodcastsController.m in Sources */,
 				FE5BE3E1181B67CC001FF07E /* SDWebImageManager.m in Sources */,
 				FE7C642A181B40A300C8DF11 /* GDataXMLNode.m in Sources */,
+				FE39D32F1857850D00998113 /* GHHDB.m in Sources */,
 				FE080824182424550056264D /* GHHPodcastModel.m in Sources */,
 				FE391FCF1837F85100F71C62 /* GHHEpisode.m in Sources */,
 				FE5BE3DC181B67CC001FF07E /* SDImageCache.m in Sources */,
@@ -701,11 +769,18 @@
 		};
 		FE2F31B318076767008910DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E25937A0C5644D2F88E4B053 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geek hub hello world/geek hub hello world-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/FMDB\"",
+					"\"${PODS_ROOT}/Headers/SQLCipher\"",
+					"\"${SDKROOT}/usr/include/libxml2\"",
+				);
 				INFOPLIST_FILE = "geek hub hello world/geek hub hello world-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -715,11 +790,18 @@
 		};
 		FE2F31B418076767008910DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E25937A0C5644D2F88E4B053 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geek hub hello world/geek hub hello world-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/FMDB\"",
+					"\"${PODS_ROOT}/Headers/SQLCipher\"",
+					"\"${SDKROOT}/usr/include/libxml2\"",
+				);
 				INFOPLIST_FILE = "geek hub hello world/geek hub hello world-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
