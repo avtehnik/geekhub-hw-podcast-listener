@@ -61,6 +61,7 @@
 
 
 -(void)store{
+    
     FMDatabase *db = [GHHDB sharedInstance].contactDB;
     
     [db executeUpdate:@"INSERT INTO podcast (name, url, artwork_url, description) VALUES(?,?,?,?)",self.name,self.url,self.image,self.text];
