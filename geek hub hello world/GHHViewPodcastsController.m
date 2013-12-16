@@ -77,26 +77,45 @@
     return cell;
 }
 
-
-
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    
-    
-    if ([[segue identifier] isEqualToString:@"podcastView"]) {
-        
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        GHHViewEpisodesController *episodesController =  segue.destinationViewController;
-
-        
-        episodesController.currentPodcast = [[GHHPodcast alloc] initWithDictionary:[self.podcasts objectAtIndex:path.row]];
-        
-        
-    }
-    
-    
+- (IBAction)edit:(id)sender {
+    self.tableView.editing = !self.tableView.editing;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"edit");
 
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"podcastView"]) {
+        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        GHHViewEpisodesController *episodesController =  segue.destinationViewController;
+        episodesController.currentPodcast = [[GHHPodcast alloc] initWithDictionary:[self.podcasts objectAtIndex:path.row]];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove the row from data model
+    NSDictionary *podcast = [self.podcasts objectAtIndex:indexPath.row];
+
+    NSLog(@"delete with id %@",[podcast objectForKey:@"id"]);
+    
+ 
+  
+    
+    [GHHPodcast deleteWithId:[podcast objectForKey:@"id"]];
+    
+    [self.podcasts removeObjectAtIndex:indexPath.row];
+    [self.tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    NSLog(@"select");
+}
 @end

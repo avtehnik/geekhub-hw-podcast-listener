@@ -86,7 +86,7 @@
     }
     
     GHHEpisode *eposode = [self.currentPodcast episodeAtIndex:indexPath.row];
-    cell.subtitle.text = eposode.description;
+    cell.subtitle.text = eposode.text;
     cell.title.text = eposode.title;
     [cell.image setImageWithURL:[eposode imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     

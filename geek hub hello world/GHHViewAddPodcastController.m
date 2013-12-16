@@ -74,14 +74,11 @@
 -(void)processUrl:(NSString *)url{
     if(self.hostActive){
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            GHHPodcastModel *model = [[GHHPodcastModel alloc] init];
-            GHHPodcast *podcast = [model loadFeedWithUrl: url];
-            
+            NSLog(@"start");
+            [[[GHHPodcastModel alloc] init] loadFeedWithUrl: url];
+            NSLog(@"end");
             [self dismissViewControllerAnimated:true completion:nil];
 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //[self.tableView reloadData];
-            });
         });
         
     }else{

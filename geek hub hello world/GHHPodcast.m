@@ -77,7 +77,15 @@
     NSLog(@"last Error: %@",[db lastErrorMessage]);
 }
 
++(void)deleteWithId:(int)podcastId{
+    
+    FMDatabase *db = [GHHDB sharedInstance].contactDB;
+    
+    [db executeUpdate:@"DELETE FROM podcast WHERE id=?",podcastId];
+    [db executeUpdate:@"DELETE FROM podcast WHERE id=?",podcastId];
 
+    
+}
 
 
 @end

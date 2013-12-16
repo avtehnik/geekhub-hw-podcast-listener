@@ -58,4 +58,12 @@
 }
 
 
++(void)deleteWithId:(int)podcastId{
+    
+    FMDatabase *db = [GHHDB sharedInstance].contactDB;
+    [db executeUpdate:@"DELETE FROM podcast_item WHERE podcast_id=?",podcastId];
+    
+}
+
+
 @end

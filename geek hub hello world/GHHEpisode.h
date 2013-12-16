@@ -24,5 +24,6 @@
 -(NSURL*)imageUrl;
 -(NSURL*)audioUrl;
 -(id)initWithNSDictionary:(NSDictionary*)data;
++(void)deleteWithId:(int)podcastId;
 
 @end

@@ -22,4 +22,5 @@
 -(NSUInteger)count;
 -(void)store;
 -(id)initWithDictionary:(NSDictionary *)data;
++(void)deleteWithId:(int)podcastId;
 @end
