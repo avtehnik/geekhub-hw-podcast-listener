@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GHHViewPodcastsController : UITableViewController< UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate,UINavigationBarDelegate>{
+@interface GHHViewPodcastsController : UITableViewController< UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate,UINavigationBarDelegate,NSFetchedResultsControllerDelegate>{
 
 
 }
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

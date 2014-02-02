@@ -7,9 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHHDB.h"
-#import "FMDatabase.h"
-
 #import "GHHAppDelegate.h"
 
 int main(int argc, char * argv[])

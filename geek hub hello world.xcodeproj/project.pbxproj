@@ -53,9 +53,10 @@
 		FE39D32C1857846E00998113 /* Player.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = FE9E169C184E5F040005CF28 /* Player.sqlite */; };
 		FE39D32F1857850D00998113 /* GHHDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE39D32E1857850D00998113 /* GHHDB.m */; };
 		FE39D33118578B2600998113 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE39D33018578B2600998113 /* libsqlite3.0.dylib */; };
-		FE39D33318578C5700998113 /* libPods-FMDB.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE39D33218578C5700998113 /* libPods-FMDB.a */; };
 		FE39D336185CF7EB00998113 /* GHHViewPodcastsController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE39D335185CF7EB00998113 /* GHHViewPodcastsController.m */; };
 		FE39D339185D11C700998113 /* GHHViewAddPodcastController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE39D338185D11C700998113 /* GHHViewAddPodcastController.m */; };
+		FE39D33C1860B9D200998113 /* GHHMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FE39D33B1860B9D200998113 /* GHHMediaItem.m */; };
+		FE4F80D81869F9AC00E6760E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE4F80D71869F9AC00E6760E /* CoreData.framework */; };
 		FE5BE3DA181B67CC001FF07E /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3BE181B67CC001FF07E /* MKAnnotationView+WebCache.m */; };
 		FE5BE3DB181B67CC001FF07E /* NSData+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3C0181B67CC001FF07E /* NSData+GIF.m */; };
 		FE5BE3DC181B67CC001FF07E /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5BE3C2181B67CC001FF07E /* SDImageCache.m */; };
@@ -73,6 +74,10 @@
 		FE7C6427181B22C900C8DF11 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7C6426181B22C900C8DF11 /* Reachability.m */; };
 		FE7C642A181B40A300C8DF11 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = FE7C6429181B40A300C8DF11 /* GDataXMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FE7C642C181B44F700C8DF11 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE7C642B181B44F700C8DF11 /* libxml2.dylib */; };
+		FEDAFC0618675FB400C5E886 /* Player.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FEDAFC0418675FB400C5E886 /* Player.xcdatamodeld */; };
+		FEDAFC091867762B00C5E886 /* PodcastItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDAFC081867762B00C5E886 /* PodcastItem.m */; };
+		FEDAFC0C1867762C00C5E886 /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDAFC0B1867762C00C5E886 /* Media.m */; };
+		FEDAFC0F1867762C00C5E886 /* Podcast.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDAFC0E1867762C00C5E886 /* Podcast.m */; };
 		FEFDE219181B4F010016C4F5 /* GHHPodcastEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFDE218181B4F010016C4F5 /* GHHPodcastEpisodeCell.m */; };
 /* End PBXBuildFile section */
 
@@ -143,11 +148,13 @@
 		FE39D32D1857850D00998113 /* GHHDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHDB.h; sourceTree = "<group>"; };
 		FE39D32E1857850D00998113 /* GHHDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHDB.m; sourceTree = "<group>"; };
 		FE39D33018578B2600998113 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		FE39D33218578C5700998113 /* libPods-FMDB.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libPods-FMDB.a"; path = "Pods/build/Debug-iphoneos/libPods-FMDB.a"; sourceTree = "<group>"; };
 		FE39D334185CF7EB00998113 /* GHHViewPodcastsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHViewPodcastsController.h; sourceTree = "<group>"; };
 		FE39D335185CF7EB00998113 /* GHHViewPodcastsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHViewPodcastsController.m; sourceTree = "<group>"; };
 		FE39D337185D11C700998113 /* GHHViewAddPodcastController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHViewAddPodcastController.h; sourceTree = "<group>"; };
 		FE39D338185D11C700998113 /* GHHViewAddPodcastController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHViewAddPodcastController.m; sourceTree = "<group>"; };
+		FE39D33A1860B9D200998113 /* GHHMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHMediaItem.h; sourceTree = "<group>"; };
+		FE39D33B1860B9D200998113 /* GHHMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHMediaItem.m; sourceTree = "<group>"; };
+		FE4F80D71869F9AC00E6760E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FE5BE3BD181B67CC001FF07E /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		FE5BE3BE181B67CC001FF07E /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		FE5BE3BF181B67CC001FF07E /* NSData+GIF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+GIF.h"; sourceTree = "<group>"; };
@@ -183,6 +190,13 @@
 		FE7C6429181B40A300C8DF11 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		FE7C642B181B44F700C8DF11 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		FE9E169C184E5F040005CF28 /* Player.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = Player.sqlite; sourceTree = "<group>"; };
+		FEDAFC0518675FB400C5E886 /* Player.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Player.xcdatamodel; sourceTree = "<group>"; };
+		FEDAFC071867762B00C5E886 /* PodcastItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodcastItem.h; sourceTree = "<group>"; };
+		FEDAFC081867762B00C5E886 /* PodcastItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodcastItem.m; sourceTree = "<group>"; };
+		FEDAFC0A1867762C00C5E886 /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
+		FEDAFC0B1867762C00C5E886 /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
+		FEDAFC0D1867762C00C5E886 /* Podcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Podcast.h; sourceTree = "<group>"; };
+		FEDAFC0E1867762C00C5E886 /* Podcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Podcast.m; sourceTree = "<group>"; };
 		FEFDE217181B4F010016C4F5 /* GHHPodcastEpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHHPodcastEpisodeCell.h; sourceTree = "<group>"; };
 		FEFDE218181B4F010016C4F5 /* GHHPodcastEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHHPodcastEpisodeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,7 +206,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE39D33318578C5700998113 /* libPods-FMDB.a in Frameworks */,
+				FE4F80D81869F9AC00E6760E /* CoreData.framework in Frameworks */,
 				FE39D33118578B2600998113 /* libsqlite3.0.dylib in Frameworks */,
 				FE391FDB1838375200F71C62 /* AVFoundation.framework in Frameworks */,
 				FE7C642C181B44F700C8DF11 /* libxml2.dylib in Frameworks */,
@@ -250,7 +264,7 @@
 		FE2F317F18076767008910DD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				FE39D33218578C5700998113 /* libPods-FMDB.a */,
+				FE4F80D71869F9AC00E6760E /* CoreData.framework */,
 				FE39D33018578B2600998113 /* libsqlite3.0.dylib */,
 				FE391FDA1838375200F71C62 /* AVFoundation.framework */,
 				FE7C642B181B44F700C8DF11 /* libxml2.dylib */,
@@ -283,6 +297,7 @@
 				FE2F318718076767008910DD /* Supporting Files */,
 				FEFDE217181B4F010016C4F5 /* GHHPodcastEpisodeCell.h */,
 				FEFDE218181B4F010016C4F5 /* GHHPodcastEpisodeCell.m */,
+				FEDAFC0418675FB400C5E886 /* Player.xcdatamodeld */,
 			);
 			name = player;
 			path = "geek hub hello world";
@@ -331,10 +346,13 @@
 		FE391FCC1837F81E00F71C62 /* entity */ = {
 			isa = PBXGroup;
 			children = (
+				FEDAFC101867764400C5E886 /* CD */,
 				FE391FCD1837F85100F71C62 /* GHHEpisode.h */,
 				FE391FCE1837F85100F71C62 /* GHHEpisode.m */,
 				FE391FD71838243300F71C62 /* GHHPodcast.h */,
 				FE391FD81838243300F71C62 /* GHHPodcast.m */,
+				FE39D33A1860B9D200998113 /* GHHMediaItem.h */,
+				FE39D33B1860B9D200998113 /* GHHMediaItem.m */,
 			);
 			name = entity;
 			sourceTree = "<group>";
@@ -441,6 +459,19 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		FEDAFC101867764400C5E886 /* CD */ = {
+			isa = PBXGroup;
+			children = (
+				FEDAFC0D1867762C00C5E886 /* Podcast.h */,
+				FEDAFC0E1867762C00C5E886 /* Podcast.m */,
+				FEDAFC0A1867762C00C5E886 /* Media.h */,
+				FEDAFC0B1867762C00C5E886 /* Media.m */,
+				FEDAFC071867762B00C5E886 /* PodcastItem.h */,
+				FEDAFC081867762B00C5E886 /* PodcastItem.m */,
+			);
+			name = CD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -491,6 +522,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "vitaliy pitvalo";
 				TargetAttributes = {
+					FE2F317C18076767008910DD = {
+						DevelopmentTeam = DJNZKXGF8V;
+					};
 					FE2F31A018076767008910DD = {
 						TestTargetID = FE2F317C18076767008910DD;
 					};
@@ -606,21 +640,26 @@
 				FE5BE3E5181B67CC001FF07E /* UIImage+MultiFormat.m in Sources */,
 				FE5BE3E2181B67CC001FF07E /* SDWebImagePrefetcher.m in Sources */,
 				FE2F319A18076767008910DD /* GHHViewEpisodesController.m in Sources */,
+				FE39D33C1860B9D200998113 /* GHHMediaItem.m in Sources */,
 				FE5BE3DA181B67CC001FF07E /* MKAnnotationView+WebCache.m in Sources */,
 				FE5BE3E6181B67CC001FF07E /* UIImage+WebP.m in Sources */,
 				FE167621180F3BCC00CA48E2 /* GHHViewPodcastPlayerController.m in Sources */,
+				FEDAFC091867762B00C5E886 /* PodcastItem.m in Sources */,
 				FE5BE3E0181B67CC001FF07E /* SDWebImageDownloaderOperation.m in Sources */,
 				FE5BE3DE181B67CC001FF07E /* SDWebImageDecoder.m in Sources */,
 				FE5BE3E7181B67CC001FF07E /* UIImageView+WebCache.m in Sources */,
 				FE391FD91838243300F71C62 /* GHHPodcast.m in Sources */,
 				FE2F319118076767008910DD /* GHHAppDelegate.m in Sources */,
 				FE5BE3DB181B67CC001FF07E /* NSData+GIF.m in Sources */,
+				FEDAFC0F1867762C00C5E886 /* Podcast.m in Sources */,
+				FEDAFC0618675FB400C5E886 /* Player.xcdatamodeld in Sources */,
 				FE5BE3DF181B67CC001FF07E /* SDWebImageDownloader.m in Sources */,
 				FEFDE219181B4F010016C4F5 /* GHHPodcastEpisodeCell.m in Sources */,
 				FE2F318D18076767008910DD /* main.m in Sources */,
 				FE7C6427181B22C900C8DF11 /* Reachability.m in Sources */,
 				FE39D336185CF7EB00998113 /* GHHViewPodcastsController.m in Sources */,
 				FE5BE3E1181B67CC001FF07E /* SDWebImageManager.m in Sources */,
+				FEDAFC0C1867762C00C5E886 /* Media.m in Sources */,
 				FE7C642A181B40A300C8DF11 /* GDataXMLNode.m in Sources */,
 				FE39D32F1857850D00998113 /* GHHDB.m in Sources */,
 				FE080824182424550056264D /* GHHPodcastModel.m in Sources */,
@@ -723,7 +762,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos7.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -761,7 +800,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				SDKROOT = iphoneos;
+				SDKROOT = iphoneos7.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -771,8 +810,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E25937A0C5644D2F88E4B053 /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geek hub hello world/geek hub hello world-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -784,6 +824,7 @@
 				INFOPLIST_FILE = "geek hub hello world/geek hub hello world-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D2DD739C-4000-4168-B5EE-B13690F6281E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -792,8 +833,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E25937A0C5644D2F88E4B053 /* Pods.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geek hub hello world/geek hub hello world-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -805,6 +847,7 @@
 				INFOPLIST_FILE = "geek hub hello world/geek hub hello world-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "D2DD739C-4000-4168-B5EE-B13690F6281E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -882,6 +925,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FEDAFC0418675FB400C5E886 /* Player.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FEDAFC0518675FB400C5E886 /* Player.xcdatamodel */,
+			);
+			currentVersion = FEDAFC0518675FB400C5E886 /* Player.xcdatamodel */;
+			path = Player.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FE2F317518076767008910DD /* Project object */;
 }

@@ -15,21 +15,16 @@
 #import "Reachability.h"
 #import "UIImageView+WebCache.h"
 #import <SystemConfiguration/SystemConfiguration.h>
-#import "GHHDB.h"
 
 
 @interface GHHViewEpisodesController ()<UITableViewDelegate, UITableViewDataSource>
 @property ( strong, nonatomic) IBOutlet UITableView *tableView;
-@property ( strong, nonatomic) GDataXMLDocument * doc;
-@property ( strong, nonatomic) NSArray *podcasts;
+@property ( strong, nonatomic) NSArray *episodes;
 
 @end
 
 
 @implementation GHHViewEpisodesController
-
-@synthesize currentPodcast;
-
 
 
 
@@ -37,6 +32,10 @@
 {
     [super viewWillAppear:animated];
    // self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.title = [self.detailItem valueForKey:@"title"];
+    self.episodes = [[self.detailItem valueForKeyPath:@"items"] allObjects];
+    
+
 }
 
 
@@ -45,8 +44,8 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.title = @"PodCasts";
- 
+
+    
     if([self respondsToSelector:@selector(extendedLayoutIncludesOpaqueBars)]){
         self.extendedLayoutIncludesOpaqueBars = NO;
     }
@@ -64,15 +63,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.currentPodcast count];
+    return [self.episodes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -85,10 +78,10 @@
         cell = [[GHHPodcastEpisodeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    GHHEpisode *eposode = [self.currentPodcast episodeAtIndex:indexPath.row];
-    cell.subtitle.text = eposode.text;
-    cell.title.text = eposode.title;
-    [cell.image setImageWithURL:[eposode imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+//    GHHEpisode *eposode = [self.currentPodcast episodeAtIndex:indexPath.row];
+    cell.subtitle.text = [[self.episodes objectAtIndex:indexPath.row] valueForKey:@"text"];
+    cell.title.text = [[self.episodes objectAtIndex:indexPath.row] valueForKey:@"name"];
+    [cell.image setImageWithURL: [[self.episodes objectAtIndex:indexPath.row] valueForKey:@"artwork_url"] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     return cell;
 }
@@ -113,16 +106,22 @@
    
     
     
+//    if ([[segue identifier] isEqualToString:@"GHHViewPodcastControllerSegue"]) {
+//        
+//        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+//        GHHViewPodcastPlayerController *pv =  segue.destinationViewController;
+//        pv.podcastTitle.text = self.currentPodcast.name;
+//        pv.podcast = self.currentPodcast;
+//        [pv setEpisodeIndex: path.row];
+//        [pv.navigationItem.backBarButtonItem setTitle:@"Your Custom Title"];
+//    }
+//
+    
     if ([[segue identifier] isEqualToString:@"GHHViewPodcastControllerSegue"]) {
-        
-        NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        GHHViewPodcastPlayerController *pv =  segue.destinationViewController;
-        pv.podcastTitle.text = self.currentPodcast.name;
-        pv.podcast = self.currentPodcast;
-        [pv setEpisodeIndex: path.row];
-        [pv.navigationItem.backBarButtonItem setTitle:@"Your Custom Title"];
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [[segue destinationViewController] setDetailItem:object];
     }
-
    
 }
 

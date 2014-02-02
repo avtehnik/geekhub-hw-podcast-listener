@@ -15,7 +15,6 @@
 #import "Reachability.h"
 #import "UIImageView+WebCache.h"
 #import <SystemConfiguration/SystemConfiguration.h>
-#import "GHHDB.h"
 
 @interface GHHViewAddPodcastController ()
 @property BOOL internetActive;
@@ -38,19 +37,22 @@
     return self;
 }
 - (IBAction)closeView:(id)sender {
+    
+    NSLog(@"close ");
+    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
 
 - (IBAction)addPodcast:(id)sender {
+    NSLog(@"addPodcast");
+
+    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
+    
 }
 
 - (void)viewDidLoad
 {
-    
-    
-    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
-
     
     self.hostActive = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
@@ -73,11 +75,14 @@
 
 -(void)processUrl:(NSString *)url{
     if(self.hostActive){
+        
+        NSLog(@"start");
+        [[[GHHPodcastModel alloc] init] loadFeedWithUrl: url];
+        NSLog(@"end");
+        [self dismissViewControllerAnimated:true completion:nil];
+
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSLog(@"start");
-            [[[GHHPodcastModel alloc] init] loadFeedWithUrl: url];
-            NSLog(@"end");
-            [self dismissViewControllerAnimated:true completion:nil];
 
         });
         

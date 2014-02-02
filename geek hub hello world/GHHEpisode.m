@@ -7,8 +7,8 @@
 //
 
 #import "GHHEpisode.h"
-#import "GHHDB.h"
-#import "FMDatabase.h"
+#import "Podcast.h"
+
 
 @implementation GHHEpisode
 
@@ -22,48 +22,35 @@
     return [NSURL URLWithString:self.audiofile];
 }
 
--(void)store{
-    FMDatabase *db = [GHHDB sharedInstance].contactDB;
+-(void)storeWithPodcast:(NSManagedObject*)podcast {
     
-//    self.title = @"title";
-//    self.text = @"text";
-//    self.image = @"image";
-//    self.playbackIndex  = 10;
     
-   // NSLog(@"%d , %@, %@, %@, %@, %d",self.podcastId, self.title, self.text, self.image,@"author",self.playbackIndex);
+    GHHAppDelegate *appDelegate =[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = appDelegate.managedObjectContext;
     
-    [db executeUpdate:@"INSERT INTO podcast_item (podcast_id, name, description, artwork_url, author,current_media_index) VALUES(?,?,?,?,?,?)",
-     [NSNumber numberWithInt:self.podcastId], self.title, self.text, self.image,@"author",[NSNumber numberWithInt:self.playbackIndex]];
-   
-    self.dbId = [db lastInsertRowId];
+    
+    
+    NSManagedObject *podcastItem =[NSEntityDescription insertNewObjectForEntityForName:@"PodcastItem" inManagedObjectContext:context];
+    [podcastItem setValue:self.title forKey:@"name"];
+    [podcastItem setValue:self.text forKey:@"text"];
+    [podcastItem setValue:@"author" forKey:@"author"];
+    [podcastItem setValue:self.image forKey:@"artwork_url"];
+    [podcastItem setValue:podcast forKey:@"podcast"];
 
+//    @dynamic name;
+//    @dynamic text;
+//    @dynamic ;
+//    @dynamic author;
+//    @dynamic medias;
+//    @dynamic podcast;
     
-//    NSLog(@"GHHEpisode %i ",self.dbId);
+//     [NSNumber numberWithInt:self.podcastId];
+//     self.title;
+//     self.text;
+//     self.image;
+//     @"author";
+//     [NSNumber numberWithInt:self.playbackIndex]
 
 }
-
-
--(id)initWithNSDictionary:(NSDictionary *)data{
-    self = [super init];
-    if(self)
-    {
-        self.dbId = [data objectForKey:@"id"];
-        self.title = [data objectForKey:@"name"];
-        self.text  = [data objectForKey:@"description"];
-        self.image  = [data objectForKey:@"artwork_url"];
-        self.playbackIndex = [data objectForKey:@"current_media_index"];
-    }
-    return self;
-    
-}
-
-
-+(void)deleteWithId:(int)podcastId{
-    
-    FMDatabase *db = [GHHDB sharedInstance].contactDB;
-    [db executeUpdate:@"DELETE FROM podcast_item WHERE podcast_id=?",podcastId];
-    
-}
-
 
 @end

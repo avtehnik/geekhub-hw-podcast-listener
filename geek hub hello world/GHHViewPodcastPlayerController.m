@@ -61,8 +61,7 @@
     [self.navigationController.navigationBar setBackgroundImage:backgroundImage forBarMetrics:UIBarMetricsDefault];
 
     
-    self.episode =  [self.podcast episodeAtIndex:self.episodeIndex];
-    NSLog(@"episode %i",self.episodeIndex);
+//    NSLog(@"episode %i",self.episodeIndex);
     [self applayEpisode];
     [self playEpisode];
     
@@ -161,13 +160,13 @@
 
 - (void)playNextEpisode{
     self.episodeIndex++;
-    if(self.podcast.count>=self.episodeIndex){
-        self.episode =  [self.podcast episodeAtIndex:self.episodeIndex];
-        [self applayEpisode];
-        [self playEpisode];
-    }else{
-        [self backToEpisodesList];
-    }
+//    if(self.podcast.count>=self.episodeIndex){
+//        self.episode =  [self.podcast episodeAtIndex:self.episodeIndex];
+//        [self applayEpisode];
+//        [self playEpisode];
+//    }else{
+//        [self backToEpisodesList];
+//    }
 }
 
 

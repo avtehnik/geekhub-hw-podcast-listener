@@ -11,11 +11,12 @@
 
 
 
-@interface GHHViewEpisodesController : UIViewController< UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate,UINavigationBarDelegate>
+@interface GHHViewEpisodesController : UIViewController< UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate,UINavigationBarDelegate,NSFetchedResultsControllerDelegate>
 {
 
 }
 
-@property (strong,nonatomic) GHHPodcast *currentPodcast;
+@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

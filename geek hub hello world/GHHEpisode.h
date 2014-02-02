@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GHHDB.h"
+#import "Podcast.h"
+#import "GHHAppDelegate.h"
+#import <CoreData/CoreData.h>
+
 
 @interface GHHEpisode : NSObject
 
@@ -20,10 +23,10 @@
 @property (nonatomic) int playbackIndex;
 @property (nonatomic) long dbId;
 
--(void)store;
+-(void)storeWithPodcast:(Podcast*)podcast;
 -(NSURL*)imageUrl;
 -(NSURL*)audioUrl;
--(id)initWithNSDictionary:(NSDictionary*)data;
-+(void)deleteWithId:(int)podcastId;
 
+@property (strong, nonatomic) id detailItem;
+	
 @end
