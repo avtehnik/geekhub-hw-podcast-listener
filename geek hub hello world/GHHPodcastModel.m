@@ -78,10 +78,17 @@
             episodeItem.image = [[xmlLink attributeForName:@"href"] stringValue];
         }
         
-        NSArray *mp3 = [episode elementsForName:@"enclosure"];
-        if (mp3.count > 0){
-            GDataXMLElement * xmlLink = mp3[0];
-            episodeItem.audiofile = [[xmlLink attributeForName:@"url"] stringValue];
+        NSArray *mp3s = [episode elementsForName:@"enclosure"];
+        if (mp3s.count > 0){
+            NSMutableArray *medias = [[NSMutableArray alloc] init];
+            for( GDataXMLElement *mp3 in mp3s){
+                 GHHMediaItem *mediaItem=[[GHHMediaItem alloc]init];
+                 mediaItem.url = [[mp3 attributeForName:@"url"] stringValue];
+                [medias addObject:mediaItem];
+                
+            }
+            episodeItem.medias = [NSArray arrayWithArray:medias];
+            
         }
         
         [newEpisodes addObject:episodeItem];

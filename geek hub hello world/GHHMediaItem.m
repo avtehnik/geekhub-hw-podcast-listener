@@ -7,7 +7,31 @@
 //
 
 #import "GHHMediaItem.h"
+#import "GHHAppDelegate.h"
+#import <CoreData/CoreData.h>
+#import "Media.h"
 
 @implementation GHHMediaItem
+
+
+-(void)storeWithPodcastItem:(PodcastItem*)podcastItem {
+    
+    
+    GHHAppDelegate *appDelegate =[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = appDelegate.managedObjectContext;
+    
+    
+    
+    Media *mediaItem =[NSEntityDescription insertNewObjectForEntityForName:@"Media" inManagedObjectContext:context];
+    mediaItem.url = self.url;
+    mediaItem.type = @"audio";
+    mediaItem.podcastItem = podcastItem;
+
+//    @dynamic url;
+//    @dynamic type;
+//    @dynamic playbackPositio;
+//    @dynamic podcastItem;
+    
+}
 
 @end

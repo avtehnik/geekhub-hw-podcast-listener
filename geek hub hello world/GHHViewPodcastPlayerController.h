@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "GHHEpisode.h"
 #import "GHHPodcast.h"
-
+#import "PodcastItem.h"
+#import "Media.h"
 
 @interface GHHViewPodcastPlayerController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *podcastTitle;
 @property int episodeIndex;
-@property (strong,nonatomic) GHHPodcast *podcast;
+@property (strong, nonatomic) PodcastItem *detailItem;
+
 @end

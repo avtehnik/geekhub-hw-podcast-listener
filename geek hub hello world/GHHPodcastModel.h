@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "GHHEpisode.h"
 #import "GHHPodcast.h"
+#import "GHHMediaItem.h"
 
 @interface GHHPodcastModel : NSObject
 

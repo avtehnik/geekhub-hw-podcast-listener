@@ -39,7 +39,7 @@
 - (IBAction)closeView:(id)sender {
     
     NSLog(@"close ");
-    [self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
+    //[self processUrl:@"http://laowaicast.rpod.ru/rss.xml"];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 

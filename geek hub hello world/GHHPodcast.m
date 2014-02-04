@@ -25,7 +25,7 @@
     NSLog(@"store %@ context %@", self.name, context);
     
     
-     NSManagedObject *podcast =[NSEntityDescription insertNewObjectForEntityForName:@"Podcast" inManagedObjectContext:context];
+     Podcast *podcast =[NSEntityDescription insertNewObjectForEntityForName:@"Podcast" inManagedObjectContext:context];
     [podcast setValue:self.name forKey:@"title"];
     [podcast setValue:self.text forKey:@"subtitle"];
     [podcast setValue:@"author" forKey:@"author"];

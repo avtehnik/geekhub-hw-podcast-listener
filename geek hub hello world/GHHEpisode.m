@@ -7,22 +7,12 @@
 //
 
 #import "GHHEpisode.h"
-#import "Podcast.h"
 
 
 @implementation GHHEpisode
 
 
--(NSURL*)imageUrl{
-    return [NSURL URLWithString:self.image];
-
-    
-}
--(NSURL*)audioUrl{
-    return [NSURL URLWithString:self.audiofile];
-}
-
--(void)storeWithPodcast:(NSManagedObject*)podcast {
+-(void)storeWithPodcast:(Podcast*)podcast {
     
     
     GHHAppDelegate *appDelegate =[[UIApplication sharedApplication] delegate];
@@ -30,26 +20,23 @@
     
     
     
-    NSManagedObject *podcastItem =[NSEntityDescription insertNewObjectForEntityForName:@"PodcastItem" inManagedObjectContext:context];
-    [podcastItem setValue:self.title forKey:@"name"];
-    [podcastItem setValue:self.text forKey:@"text"];
-    [podcastItem setValue:@"author" forKey:@"author"];
-    [podcastItem setValue:self.image forKey:@"artwork_url"];
-    [podcastItem setValue:podcast forKey:@"podcast"];
+    PodcastItem *podcastItem =[NSEntityDescription insertNewObjectForEntityForName:@"PodcastItem" inManagedObjectContext:context];
+    podcastItem.name  = self.title;
+    podcastItem.text = self.text;
+    podcastItem.author = @"author";
+    podcastItem.artwork_url = self.image;
+    podcastItem.podcast = podcast;
 
+    for (GHHMediaItem *media in self.medias) {
+        [media storeWithPodcastItem:podcastItem];
+    }
+    
 //    @dynamic name;
 //    @dynamic text;
 //    @dynamic ;
 //    @dynamic author;
 //    @dynamic medias;
 //    @dynamic podcast;
-    
-//     [NSNumber numberWithInt:self.podcastId];
-//     self.title;
-//     self.text;
-//     self.image;
-//     @"author";
-//     [NSNumber numberWithInt:self.playbackIndex]
 
 }
 

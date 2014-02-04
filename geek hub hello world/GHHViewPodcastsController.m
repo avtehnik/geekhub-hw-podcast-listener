@@ -29,19 +29,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    
     GHHAppDelegate *appDelegate =[[UIApplication sharedApplication] delegate];
     self.managedObjectContext = appDelegate.managedObjectContext;
-    
-
-    [self.tableView setDelegate:self];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     
   //  [self.tableView reloadData];
+    self.tableView.editing = false;
     NSLog(@"viewWillAppear");
 }
 
@@ -67,21 +65,11 @@
     return [sectionInfo numberOfObjects];
 }
 
-
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-//    [self configureCell:cell atIndexPath:indexPath];
-//    return cell;
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"podcastitem";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
-//    NSDictionary *podcast = [self.podcasts objectAtIndex:indexPath.row];
-//    cell.textLabel.text = [podcast objectForKey:@"name"];
     return cell;
 }
 
@@ -90,14 +78,12 @@
 }
 
 
-
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([[segue identifier] isEqualToString:@"podcastView"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
     }
-    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

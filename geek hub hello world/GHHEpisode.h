@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Podcast.h"
+#import "PodcastItem.h"
+#import "GHHMediaItem.h"
 #import "GHHAppDelegate.h"
 #import <CoreData/CoreData.h>
 
@@ -19,14 +21,13 @@
 @property (copy, nonatomic) NSString *image;
 @property (copy, nonatomic) NSString *audiofile;
 @property (copy, nonatomic) NSString *author;
+@property (strong, nonatomic) NSArray *medias;
+
 @property (nonatomic) long podcastId;
 @property (nonatomic) int playbackIndex;
 @property (nonatomic) long dbId;
 
 -(void)storeWithPodcast:(Podcast*)podcast;
--(NSURL*)imageUrl;
--(NSURL*)audioUrl;
 
-@property (strong, nonatomic) id detailItem;
 	
 @end

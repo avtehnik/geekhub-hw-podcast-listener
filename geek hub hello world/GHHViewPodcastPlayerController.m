@@ -14,13 +14,12 @@
     NSTimer *timer;
 }
 
-@property(strong,nonatomic) NSArray *eposodes;
+@property(strong,nonatomic) NSArray *episodes;
 @property (weak, nonatomic) IBOutlet UILabel *episodeTitle;
-@property (weak, nonatomic) NSURL *audioFile;
+@property (copy, nonatomic) NSURL *audioFile;
 @property (weak, nonatomic) IBOutlet UIImageView *episodeImage;
 @property (weak, nonatomic) IBOutlet UISlider *durationSlider;
 @property (weak, nonatomic) IBOutlet UILabel *episodeTime;
-@property (strong, nonatomic) GHHEpisode *episode;
 
 
 @property (nonatomic, retain) AVPlayer *player;
@@ -30,16 +29,15 @@
 
 
 @implementation GHHViewPodcastPlayerController
-@synthesize episodeIndex;
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     
-    NSLog(@"prapare episode %i ", self.episodeIndex);
+    self.episodes = [[self.detailItem valueForKeyPath:@"medias"] allObjects];
     
     //self.navigationController.navigationBar.topItem.title = @"Back";
 
-    
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 21)];
     UIImage *bgimage = [UIImage imageNamed:@"palyer-back-btn"];
     backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -49,9 +47,6 @@
     [backButton addTarget:self action:@selector(backToEpisodesList) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = barBackButtonItem;
     self.navigationItem.hidesBackButton = YES;
-    
-    
-    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"player-bg.png"]];
     
     self.navigationController.navigationBar.tintColor = [self getUIColorObjectFromHexString:@"#222429" alpha:1];
@@ -70,7 +65,6 @@
     [self.durationSlider setMaximumTrackImage:[UIImage imageNamed:@"player-control-slider-progress-rigth"] forState:UIControlStateNormal];
     
     
-    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -138,12 +132,15 @@
 }
 
 - (void)applayEpisode{
-    self.episodeTitle.text = self.episode.title;
-    NSLog(@"title %@", self.episodeTitle.text );
-    self.audioFile = [self.episode audioUrl];
+    self.episodeTitle.text = self.detailItem.name;
+ 
+    Media *mediaItem = [self.episodes objectAtIndex:0];
+    
+    self.audioFile = [[NSURL alloc] initWithString: mediaItem.url];
+    
     self.episodeImage.layer.masksToBounds = YES;
     self.episodeImage.layer.cornerRadius = 3.0;
-    [self.episodeImage setImageWithURL:[self.episode imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+    [self.episodeImage setImageWithURL:[[NSURL alloc] initWithString:self.detailItem.artwork_url] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     
 
@@ -160,13 +157,13 @@
 
 - (void)playNextEpisode{
     self.episodeIndex++;
-//    if(self.podcast.count>=self.episodeIndex){
-//        self.episode =  [self.podcast episodeAtIndex:self.episodeIndex];
-//        [self applayEpisode];
-//        [self playEpisode];
-//    }else{
-//        [self backToEpisodesList];
-//    }
+   // if(self.podcast.count>=self.episodeIndex){
+   //     self.episode = [self.podcast episodeAtIndex:self.episodeIndex];
+   //     [self applayEpisode];
+   //     [self playEpisode];
+   // }else{
+   //     [self backToEpisodesList];
+   // }
 }
 
 
@@ -179,7 +176,7 @@
 
 -(void)playEpisode{
     
-    self.player = [[AVPlayer alloc]initWithURL:[self.episode audioUrl]];
+    self.player = [[AVPlayer alloc]initWithURL:self.audioFile];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(playerItemDidReachEnd:)
